@@ -1,10 +1,10 @@
 //how to make things bounce?
-
 //friction and restitution
+//gravity is part of the world
 
 function Particle(x, y, r) {
   const options = {
-    restitution: 0.5,
+    restitution: 0.3,
     friction: 0,
   };
   this.body = Bodies.circle(x, y, r, options);
@@ -21,4 +21,10 @@ Particle.prototype.show = function () {
   translate(pos.x, pos.y);
   ellipse(0, 0, this.r * 2);
   pop();
+};
+
+Particle.prototype.isOffScreen = function () {
+  let x = this.body.position.x;
+  let y = this.body.position.y;
+  return x < -50 || x > width + 50;
 };

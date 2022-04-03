@@ -10,20 +10,23 @@ let engine;
 let world;
 let particles = [];
 let plinkos = [];
-let cols = 11;
-let rows = 10;
+let bounds = [];
+let cols = 10;
+let rows = 11;
 
 function setup() {
   createCanvas(600, 800);
   engine = Engine.create();
   world = engine.world;
+  world.gravity.y = 1;
+
   newParticle();
 
   //draw Plinko points
   let spacing = width / cols;
 
   for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols; j++) {
+    for (let j = 0; j < cols + 1; j++) {
       let x = spacing / 2 + i * spacing;
       if (j % 2 == 0) {
         //offset x by row
@@ -35,6 +38,20 @@ function setup() {
       plinkos.push(p);
     }
   }
+
+  //create outer bound
+  let b = new Boundary(width / 2, height + 50, width, 100);
+  bounds.push(b);
+
+  //create divider
+  for (let i = 0; i < cols + 1; i++) {
+    let x = i * spacing;
+    let h = 100;
+    let w = 10;
+    let y = height - h / 2;
+    let bBottom = new Boundary(x, y, w, h);
+    bounds.push(bBottom);
+  }
 }
 
 function draw() {
@@ -44,8 +61,19 @@ function draw() {
   background(50);
   //passing in physics engine
   Engine.update(engine);
-  particles.forEach((v) => v.show());
+
+  for (let i = 0; i < particles.length; i++) {
+    particles[i].show();
+    if (particles[i].isOffScreen()) {
+      //remove the particle from the world as well
+      World.remove(world, particles[i].body);
+      particles.splice(i, 1);
+      i--;
+    }
+  }
+
   plinkos.forEach((v) => v.show());
+  bounds.forEach((v) => v.show());
 }
 
 function newParticle() {
