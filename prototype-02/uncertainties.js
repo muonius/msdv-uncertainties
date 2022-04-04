@@ -16,6 +16,7 @@ let rows = 11;
 
 function setup() {
   createCanvas(600, 800);
+  colorMode(HSB);
   engine = Engine.create();
   world = engine.world;
   world.gravity.y = 1;
@@ -34,7 +35,7 @@ function setup() {
       }
       let y = spacing + j * spacing;
 
-      let p = new Plinko(x, y, 4);
+      let p = new Plinko(x, y, 16);
       plinkos.push(p);
     }
   }
@@ -60,7 +61,9 @@ function draw() {
   }
   background(50);
   //passing in physics engine
-  Engine.update(engine);
+  //time step
+  //default 16.666 because of 60 frame rate
+  Engine.update(engine, 10.66);
 
   for (let i = 0; i < particles.length; i++) {
     particles[i].show();
