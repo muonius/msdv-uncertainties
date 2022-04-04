@@ -7,6 +7,7 @@ function Boundary(x, y, w, h) {
     isStatic: true,
   };
   this.body = Bodies.rectangle(x, y, w, h, options);
+  this.body.label = "rect";
   this.w = w;
   this.h = h;
 

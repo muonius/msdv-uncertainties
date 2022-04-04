@@ -2,9 +2,10 @@
 //Part 2: https://www.youtube.com/watch?v=6s4MJcUyaUE&list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH&index=81
 //Part 3: https://www.youtube.com/watch?v=jN-sW-SxNzk&list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH&index=82&t=52s
 
-let Engine = Matter.Engine,
-  World = Matter.World,
-  Bodies = Matter.Bodies;
+let Engine = Matter.Engine;
+let World = Matter.World;
+let Bodies = Matter.Bodies;
+let Events = Matter.Events;
 
 let engine;
 let world;
@@ -13,6 +14,11 @@ let plinkos = [];
 let bounds = [];
 let cols = 10;
 let rows = 11;
+let ding;
+
+function preload() {
+  ding = loadSound("./assets/ding.mp3");
+}
 
 function setup() {
   createCanvas(600, 800);
@@ -21,6 +27,21 @@ function setup() {
   world = engine.world;
   world.gravity.y = 1;
 
+  function collision(event) {
+    let pairs = event.pairs;
+
+    for (let i = 0; i < pairs.length; i++) {
+      let labelA = pairs[i].bodyA.label;
+      let labelB = pairs[i].bodyB.label;
+      if (labelA==='particle'&& labelB==='plinko'){
+       ding.play()
+      }
+      if (labelA==='plinko'&& labelB==='particle'){
+        ding.play()
+       }
+    
+  }
+  Events.on(engine, "collisionStart", collision);
   newParticle();
 
   //draw Plinko points
