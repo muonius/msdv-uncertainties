@@ -2,7 +2,7 @@
 //friction and restitution
 //gravity is part of the world
 //play with density (mass)
-//time step variable
+//time step variable engine.update delta
 
 function Particle(x, y, r) {
   this.hue = random(360);

@@ -16,32 +16,12 @@ let cols = 10;
 let rows = 11;
 let ding;
 
-function preload() {
-  ding = loadSound("./assets/ding.mp3");
-}
-
 function setup() {
   createCanvas(600, 800);
   colorMode(HSB);
   engine = Engine.create();
   world = engine.world;
   world.gravity.y = 1;
-
-  function collision(event) {
-    let pairs = event.pairs;
-
-    for (let i = 0; i < pairs.length; i++) {
-      let labelA = pairs[i].bodyA.label;
-      let labelB = pairs[i].bodyB.label;
-      if (labelA==='particle'&& labelB==='plinko'){
-       ding.play()
-      }
-      if (labelA==='plinko'&& labelB==='particle'){
-        ding.play()
-       }
-    
-  }
-  Events.on(engine, "collisionStart", collision);
   newParticle();
 
   //draw Plinko points
