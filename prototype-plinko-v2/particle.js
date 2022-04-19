@@ -1,9 +1,3 @@
-//how to make things bounce?
-//friction and restitution
-//gravity is part of the world
-//play with density (mass)
-//time step variable engine.update delta
-
 function Particle(x, y, r) {
   this.hue = random(360);
   const options = {

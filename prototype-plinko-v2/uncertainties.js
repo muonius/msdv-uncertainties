@@ -12,8 +12,8 @@ let world;
 let particles = [];
 let plinkos = [];
 let bounds = [];
-let cols = 10;
-let rows = 11;
+let cols = 4;
+let rows = 4;
 let ding;
 
 function setup() {
@@ -29,12 +29,12 @@ function setup() {
 
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols + 1; j++) {
-      let x = spacing / 2 + i * spacing;
-      if (j % 2 == 0) {
+      let x = spacing / 2 + j * spacing;
+      if (i % 2 == 0) {
         //offset x by row
         x += spacing / 2;
       }
-      let y = spacing + j * spacing;
+      let y = spacing + i * spacing;
 
       let p = new Plinko(x, y, 16);
       plinkos.push(p);
