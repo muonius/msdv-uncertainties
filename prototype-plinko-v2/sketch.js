@@ -6,44 +6,39 @@ let Engine = Matter.Engine;
 let World = Matter.World;
 let Bodies = Matter.Bodies;
 let Events = Matter.Events;
+let Runner = Matter.Runner;
 
 let engine;
 let world;
 let particles = [];
 let plinkos = [];
 let bounds = [];
+let boundaries = [];
 let cols = 4;
 let rows = 4;
+let spacing;
 let ding;
 
 function setup() {
-  createCanvas(600, 800);
-  colorMode(HSB);
+  createCanvas(800, 800);
+  // colorMode(HSB);
+
   engine = Engine.create();
   world = engine.world;
   world.gravity.y = 1;
+  Runner.run(engine);
+  frameRate(60);
+
   newParticle();
 
   //draw Plinko points
-  let spacing = width / cols;
-
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols + 1; j++) {
-      let x = spacing / 2 + j * spacing;
-      if (i % 2 == 0) {
-        //offset x by row
-        x += spacing / 2;
-      }
-      let y = spacing + i * spacing;
-
-      let p = new Plinko(x, y, 16);
-      plinkos.push(p);
-    }
-  }
+  boundaries.push(new Boundary(150, 200, width * 0.4, 20, 0.4, "brown"));
+  boundaries.push(new Boundary(250, 400, width * 0.6, 80, -0.3, "black"));
+  boundaries.push(new Boundary(350, 300, width * 0.8, 2, -1.2, "black"));
 
   //create outer bound
-  let b = new Boundary(width / 2, height + 50, width, 100);
-  bounds.push(b);
+  // let b = new Boundary(width / 2, height + 50, width, 100);
+  // bounds.push(b);
 
   //create divider
   for (let i = 0; i < cols + 1; i++) {
@@ -51,16 +46,17 @@ function setup() {
     let h = 100;
     let w = 10;
     let y = height - h / 2;
-    let bBottom = new Boundary(x, y, w, h);
+    let bBottom = new Boundary(x, y, w, h, 0, "black");
     bounds.push(bBottom);
   }
 }
 
 function draw() {
+  background(50);
   if (frameCount % 60 == 0) {
     newParticle();
   }
-  background(50);
+
   //passing in physics engine
   //time step
   //default 16.666 because of 60 frame rate
