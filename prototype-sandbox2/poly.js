@@ -1,11 +1,22 @@
-function Poly(x, y, sides, r, a, c) {
+function drawPolygon(x, y, r, sides) {
+  let angle = TWO_PI / sides;
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += angle) {
+    let sx = x + cos(a) * r;
+    let sy = y + sin(a) * r;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
+}
+
+function Poly(x, y, sides, r, c) {
   const options = {
-    friction: 1,
+    friction: 0.5,
     restitution: 1,
     isStatic: true,
-    angle: a,
+    circleRadius: 10,
   };
-  this.body = Bodies.polygon(x, y, sides, r, a, options);
+  this.body = Bodies.polygon(x, y, sides, r, options);
   // this.body.angle = PI / 4;
 
   this.sides = sides;
@@ -20,22 +31,11 @@ function Poly(x, y, sides, r, a, c) {
     translate(pos.x, pos.y);
     rectMode(CENTER);
     rotate(angle);
-    strokeWeight(4);
+    strokeWeight(1);
     noStroke();
     fill(c);
-    polygon(0, 0, this.r, this.sides);
+    drawPolygon(0, 0, this.r, this.sides);
     pop();
-    console.log(this.body.isStatic);
+    console.log(this.body);
   };
-}
-
-function polygon(x, y, radius, npoints) {
-  let angle = TWO_PI / npoints;
-  beginShape();
-  for (let a = 0; a < TWO_PI; a += angle) {
-    let sx = x + cos(a) * radius;
-    let sy = y + sin(a) * radius;
-    vertex(sx, sy);
-  }
-  endShape(CLOSE);
 }

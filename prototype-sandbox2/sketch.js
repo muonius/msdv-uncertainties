@@ -23,8 +23,7 @@ function setup() {
   colorMode(HSB);
   engine = Engine.create();
   world = engine.world;
-  polygons.push(new Poly(200, 200, 7, 50, 0, "brown"));
-  boundaries.push(new Boundary(250, 400, width * 0.6, 80, -0.1, "brown"));
+  polygons.push(new Poly(250, 200, 7, 60, "brown"));
   boundaries.push(new Boundary(250, 400, width * 0.6, 80, -0.3, "black"));
   boundaries.push(new Boundary(350, 300, width * 0.8, 2, -1.2, "black"));
   Runner.run(engine);
