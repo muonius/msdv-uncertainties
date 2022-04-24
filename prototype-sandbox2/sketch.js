@@ -19,13 +19,20 @@ let particles = [];
 let polygons = [];
 
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(800, 800);
   colorMode(HSB);
   engine = Engine.create();
   world = engine.world;
-  polygons.push(new Poly(250, 200, 7, 60, "brown"));
-  boundaries.push(new Boundary(250, 400, width * 0.6, 80, -0.3, "black"));
-  boundaries.push(new Boundary(350, 300, width * 0.8, 2, -1.2, "black"));
+  polygons.push(new Poly(width / 2, 200, 7, 60, "brown"));
+
+  let angle = TWO_PI / 7;
+
+  for (let a = -0.7; a < TWO_PI; a += angle) {
+    let bx = width / 2 + sin(a) * 100;
+    let by = 200 + cos(a) * 100;
+    boundaries.push(new Boundary(bx, by, 30, 10, TWO_PI - a, "black"));
+  }
+
   Runner.run(engine);
   frameRate(60);
 }
@@ -64,6 +71,6 @@ function draw() {
 }
 
 function newParticle() {
-  let p = new Particle(300, 0, 10);
+  let p = new Particle(width / 2, 0, 10);
   particles.push(p);
 }
