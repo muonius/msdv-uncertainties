@@ -1,7 +1,7 @@
 function drawPolygon(x, y, r, sides) {
   let angle = TWO_PI / sides;
   beginShape();
-  for (let a = 0; a < TWO_PI; a += angle) {
+  for (let a = -0.7; a < TWO_PI; a += angle) {
     let sx = x + cos(a) * r;
     let sy = y + sin(a) * r;
     vertex(sx, sy);

@@ -4,7 +4,7 @@ function Circles(x, y, r, optionReplace) {
     options = optionReplace;
   } else {
     options = {
-      friction: 0.3,
+      friction: 0.5,
       restitution: 1,
     };
   }
