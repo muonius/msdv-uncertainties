@@ -20,20 +20,22 @@ let circles = [];
 let particles = [];
 let polygons = [];
 let cols = 10;
+let draws = [];
 let angles = [-0.2, 0.9, 1.5, 2.1, -0.9, -1.7, -2.4];
+let clubs = [];
+let referees = [];
 
 function setup() {
   createCanvas(800, 800);
   colorMode(HSB);
   engine = Engine.create();
   world = engine.world;
-  polygons.push(new Poly(width / 2, 200, 7, 60, "brown"));
+  polygons.push(new Poly(width / 2, 300, 7, 60, "brown"));
 
-  //draw side bars
-
+  //draw Player plinkos
   for (let i = 0; i < angles.length; i++) {
     let bx = width / 2 + sin(angles[i]) * 100;
-    let by = 200 + cos(angles[i]) * 100;
+    let by = 300 + cos(angles[i]) * 100;
     plinkos.push(
       new Boundary(
         bx,
@@ -46,16 +48,16 @@ function setup() {
     );
   }
 
-  plinkos.push(
-    new Boundary(
-      width / 2 + sin(0.4) * 84,
-      200 + cos(0.4) * 84,
-      30,
-      10,
-      TWO_PI - 0.4,
-      "black"
-    )
-  );
+  //draw club plinkos
+  clubs.push(new Boundary(250, 500, 60, 5, 0.9, "black"));
+  clubs.push(new Boundary(300, 500, 80, 10, 1, "black"));
+
+  //draw referees plinkos
+  referees.push(new Boundary(500, 500, 40, 15, -0.9, "black"));
+  referees.push(new Boundary(550, 500, 80, 5, -1.1, "black"));
+  referees.push(new Boundary(600, 500, 100, 10, -1.2, "black"));
+  //covariate - number of draws
+  draws.push(new Boundary(width / 2 - 30, 80, 20, 20, 0, "black"));
 
   //create divider
   for (let i = 0; i < cols + 1; i++) {
@@ -79,7 +81,7 @@ function setup() {
 function draw() {
   background("FloralWhite");
 
-  if (frameCount % 60 == 0 && particles.length <= 29) {
+  if (frameCount % 120 == 0 && particles.length <= 29) {
     newParticle();
   }
 
@@ -117,6 +119,18 @@ function draw() {
 
   for (let i = 0; i < boundaries.length; i++) {
     boundaries[i].show();
+  }
+
+  for (let i = 0; i < draws.length; i++) {
+    draws[i].show();
+  }
+
+  for (let i = 0; i < clubs.length; i++) {
+    clubs[i].show();
+  }
+
+  for (let i = 0; i < referees.length; i++) {
+    referees[i].show();
   }
 }
 
