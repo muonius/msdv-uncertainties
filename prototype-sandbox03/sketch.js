@@ -9,6 +9,7 @@ let MouseConstraint = Matter.MouseConstraint;
 let Common = Matter.Common;
 
 let startX;
+let dWidth = 800;
 
 let engine;
 //world is the world inside of an engine
@@ -32,7 +33,7 @@ let poissons = [];
 let miscs = [];
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(dWidth, dWidth);
   colorMode(HSB);
   engine = Engine.create();
   world = engine.world;
