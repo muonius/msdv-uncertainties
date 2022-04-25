@@ -38,12 +38,12 @@ function setup() {
   world = engine.world;
 
   //polygons
-  polygons.push(new Poly(width / 2, 300, 7, 60, "brown"));
+  polygons.push(new Poly(width / 2 - 50, 300, 7, 60, "brown"));
 
   //draw Player plinkos
   for (let i = 0; i < angles.length; i++) {
-    let bx = width / 2 + sin(angles[i]) * 100;
-    let by = 300 + cos(angles[i]) * 100;
+    let bx = width / 2 + sin(angles[i]) * 140;
+    let by = 300 + cos(angles[i]) * 140;
     plinkos.push(
       new Boundary(
         bx,
@@ -66,7 +66,7 @@ function setup() {
   referees.push(new Boundary(600, 500, 100, 10, -1.2, "black"));
 
   //covariate - number of draws
-  draws.push(new Boundary(width / 2 - 15, 80, 30, 40, -0.1, "brown"));
+  draws.push(new Boundary(width / 2 - 30, 80, 30, 40, -0.1, "black"));
 
   //create divider
   for (let i = 0; i < cols + 1; i++) {
@@ -102,7 +102,7 @@ function draw() {
     newPoisson();
   }
 
-  if (frameCount % 480 == 10 && linears.length <= 2) {
+  if (frameCount % 480 == 40 && linears.length <= 2) {
     newMisc();
   }
 
