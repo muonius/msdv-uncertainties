@@ -1,9 +1,9 @@
-function Particle(x, y, r) {
-  this.hue = random(360);
+function Particle(x, y, r, f, d, color) {
+  this.hue = color;
   const options = {
     restitution: 0.3,
-    friction: 0,
-    density: 0.01,
+    friction: f,
+    density: d,
   };
   x += random(-1, 1);
   this.body = Bodies.circle(x, y, r, options);

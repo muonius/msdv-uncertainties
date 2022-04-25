@@ -25,5 +25,6 @@ function Boundary(x, y, w, h, a, c) {
     fill(c);
     rect(0, 0, this.w, this.h);
     pop();
+    // console.log(this);
   };
 }

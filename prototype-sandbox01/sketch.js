@@ -8,6 +8,8 @@ let Mouse = Matter.Mouse;
 let MouseConstraint = Matter.MouseConstraint;
 let Common = Matter.Common;
 
+let startX;
+
 let engine;
 //world is the world inside of an engine
 let world;
@@ -18,6 +20,7 @@ let dividers = [];
 let plinkos = [];
 let circles = [];
 let particles = [];
+let logistic = [];
 let polygons = [];
 let cols = 10;
 let draws = [];
@@ -56,17 +59,18 @@ function setup() {
   referees.push(new Boundary(500, 500, 40, 15, -0.9, "black"));
   referees.push(new Boundary(550, 500, 80, 5, -1.1, "black"));
   referees.push(new Boundary(600, 500, 100, 10, -1.2, "black"));
+
   //covariate - number of draws
-  draws.push(new Boundary(width / 2 - 30, 80, 20, 20, 0, "black"));
+  draws.push(new Boundary(width / 2 - 15, 80, 20, 20, 0, "black"));
 
   //create divider
   for (let i = 0; i < cols + 1; i++) {
     const spacing = width / cols;
     let x = i * spacing;
-    let h = 100;
-    let w = 10;
+    let h = 80;
+    let w = 5;
     let y = height - h / 2;
-    let bBottom = new Boundary(x, y, w, h, 0, "orange");
+    let bBottom = new Boundary(x, y, w, h, 0, "black");
     dividers.push(bBottom);
   }
 
@@ -96,6 +100,9 @@ function draw() {
   }
 
   fill(255);
+
+  //draw all elements
+
   for (let i = 0; i < boxes.length; i++) {
     boxes[i].show();
   }
@@ -135,6 +142,11 @@ function draw() {
 }
 
 function newParticle() {
-  let p = new Particle(width / 2, 0, 10);
+  if (random() > 0.5) {
+    startX = width / 2 - 5;
+  } else {
+    startX = width / 2 + 10;
+  }
+  let p = new Particle(startX, 0, 10);
   particles.push(p);
 }
