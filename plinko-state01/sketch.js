@@ -31,57 +31,65 @@ let logistics = [];
 let linears = [];
 let poissons = [];
 let miscs = [];
+let test = [];
 
 function setup() {
-  createCanvas(dWidth, dWidth);
-  colorMode(HSB);
+  createCanvas(dWidth, dWidth, WEBGL);
+  // colorMode(HSB);
+  rectMode(CENTER);
   engine = Engine.create();
   world = engine.world;
 
-  //polygons
-  polygons.push(new Poly(width / 2 - 35, 300, 7, 60, "brown"));
-
   //draw Player plinkos
-  for (let i = 0; i < angles.length; i++) {
-    let bx = width / 2 + sin(angles[i]) * 140;
-    let by = 300 + cos(angles[i]) * 140;
-    plinkos.push(
-      new Boundary(
-        bx,
-        by,
-        random(20, 30),
-        random(5, 20),
-        TWO_PI - angles[i],
-        "black"
-      )
-    );
-  }
+  let playerPosition = new Boundary(-50, -250, 40, 40, 0.9, "#0066ff");
+  plinkos.push(playerPosition);
+  let playerHeight = new Boundary(-130, -200, 40, 40, 0.8, "#0066ff");
+  plinkos.push(playerHeight);
+  let playerWeight = new Boundary(-200, -100, 40, 40, 0.7, "#0066ff");
+  plinkos.push(playerWeight);
+  let playerCard = new Boundary(100, -50, 40, 40, 0.9, "#0066ff");
+  plinkos.push(playerCard);
+  let playerAge = new Boundary(50, -80, 40, 40, -0.4, "#0066ff");
+  plinkos.push(playerAge);
+  let playerName = new Boundary(-330, 150, 40, 40, -0.4, "#0066ff");
+  plinkos.push(playerName);
+  let playerVictory = new Boundary(-490, 150, 40, 40, -0.4, "#0066ff");
+  plinkos.push(playerVictory);
+  let playerScore = new Boundary(-590, 190, 40, 40, -0.5, "#0066ff");
+  plinkos.push(playerScore);
+  // console.log(plinkos);
+
+  //polygons
+  // polygons.push(new Poly(0, 50, 7, 40, "brown"));
+
+  //test
+  test.push(new Test(0, 50, 40, 40, 0, "brown"));
 
   //draw club plinkos
-  clubs.push(new Boundary(250, 500, 60, 5, 0.9, "black"));
-  clubs.push(new Boundary(300, 500, 80, 10, 1, "black"));
+  clubs.push(new Boundary(250, 200, 40, 40, 0.9, "#ccccff"));
+  clubs.push(new Boundary(350, 200, 40, 40, 1, "#ccccff"));
 
   //draw referees plinkos
-  referees.push(new Boundary(500, 500, 40, 15, -0.9, "black"));
-  referees.push(new Boundary(550, 500, 80, 5, -1.1, "black"));
-  referees.push(new Boundary(600, 500, 100, 10, -1.2, "black"));
+  referees.push(new Boundary(500, 550, 40, 40, -0.9, "#ffcc66"));
+  referees.push(new Boundary(550, 500, 40, 40, -1.1, "#ffcc66"));
+  referees.push(new Boundary(650, 500, 40, 40, -1.2, "#ffcc66"));
 
   //covariate - number of draws
-  draws.push(new Boundary(width / 2 - 10, 80, 30, 40, -0.1, "black"));
+  // draws.push(new Boundary(width / 2 - 10, 80, 30, 40, -0.1, "black"));
 
   //create divider
-  for (let i = 0; i < cols + 1; i++) {
+  for (let i = -cols / 2; i < cols + 1; i++) {
     const spacing = width / cols;
     let x = i * spacing;
     let h = 80;
-    let w = 5;
-    let y = height - h / 2;
-    let bBottom = new Boundary(x, y, w, h, 0, "black");
+    let w = 4;
+    let y = height / 2 - h;
+    let bBottom = new Boundary(x, y, w, h, 0, "Black");
     dividers.push(bBottom);
   }
 
   //create outer bound
-  let bound = new Boundary(width / 2, height, width, 100, 0, "black");
+  let bound = new Boundary(0, height / 2, width, 100, 0, "black");
   boundaries.push(bound);
 
   Runner.run(engine);
@@ -89,7 +97,9 @@ function setup() {
 }
 
 function draw() {
-  background("FloralWhite");
+  background(255);
+  orbitControl();
+  lights();
 
   if (frameCount % 120 == 0 && logistics.length <= 15) {
     newLogistic();
@@ -159,9 +169,7 @@ function draw() {
   for (let i = 0; i < circles.length; i++) {
     circles[i].show();
   }
-  for (let i = 0; i < polygons.length; i++) {
-    polygons[i].show();
-  }
+
   for (let i = 0; i < dividers.length; i++) {
     dividers[i].show();
   }
@@ -179,6 +187,10 @@ function draw() {
     draws[i].show();
   }
 
+  for (let i = 0; i < polygons.length; i++) {
+    polygons[i].show();
+  }
+
   for (let i = 0; i < clubs.length; i++) {
     clubs[i].show();
   }
@@ -186,48 +198,52 @@ function draw() {
   for (let i = 0; i < referees.length; i++) {
     referees[i].show();
   }
+
+  for (let i = 0; i < test.length; i++) {
+    test[i].show();
+  }
 }
 
 function newLogistic() {
   if (random() > 0.5) {
-    startX = width / 2 - 5;
+    startX = -5;
   } else {
-    startX = width / 2 + 15;
+    startX = 15;
   }
   //(x, y, r, f, d, blue)
-  let lg = new Particle(startX, 0, 10, 0, 0.01, 210);
+  let lg = new Particle(startX, -height / 2, 10, 0, 0.01, "red");
   logistics.push(lg);
 }
 
 function newLinear() {
   if (random() > 0.5) {
-    startX = width / 2 - 5;
+    startX = -5;
   } else {
-    startX = width / 2 + 15;
+    startX = 15;
   }
   //(x, y, r, f, d, red)
-  let ln = new Particle(startX, 0, 10, 0, 0.01, 30);
+  let ln = new Particle(startX, -height / 2, 10, 0, 0.01, "blue");
   linears.push(ln);
 }
 
 function newPoisson() {
   if (random() > 0.5) {
-    startX = width / 2 - 5;
+    startX = -5;
   } else {
-    startX = width / 2 + 15;
+    startX = 15;
   }
   //(x, y, r, f, d, green)
-  let pn = new Particle(startX, 0, 10, 0, 0.02, 90);
+  let pn = new Particle(startX, -height / 2, 10, 0, 0.02, "orange");
   poissons.push(pn);
 }
 
 function newMisc() {
   if (random() > 0.5) {
-    startX = width / 2 - 5;
+    startX = -5;
   } else {
-    startX = width / 2 + 15;
+    startX = 15;
   }
   //(x, y, r, f, d, green)
-  let ms = new Particle(startX, 0, 10, 0, 0.02, 330);
+  let ms = new Particle(startX, -height / 2, 10, 0, 0.02, "green");
   miscs.push(ms);
 }
