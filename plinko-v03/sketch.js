@@ -11,6 +11,9 @@ let Common = Matter.Common;
 let startX;
 let dWidth = 800;
 
+let xArray = [-10, 0, 20, -20, 40];
+let colors = ["orange", "blue", "green", "purple", "grey"];
+
 let engine;
 //world is the world inside of an engine
 let world;
@@ -148,9 +151,10 @@ function draw() {
   //   newLogistic();
   // }
 
-  if (frameCount % 240 == 20 && linears.length < 1) {
-    //x, y, r, f, d, color
-    newLinear(-10, -height / 2 + 50, 10, 0.5, 1, "orange");
+  if (frameCount % 240 == 20) {
+    for (let i = 0; i < 5; i++)
+      //x, y, r, f, d, color
+      newLinear(xArray[i], -height / 2 + 50, 10, 0.5, 1, colors[i]);
     // console.log(linears);
   }
 
