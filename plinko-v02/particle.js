@@ -1,7 +1,7 @@
 function Particle(x, y, r, f, d, color) {
   this.hue = color;
   const options = {
-    restitution: 0.3,
+    restitution: 0.6,
     friction: f,
     density: d,
   };
@@ -13,12 +13,15 @@ function Particle(x, y, r, f, d, color) {
 }
 
 Particle.prototype.show = function () {
-  stroke(this.hue);
-  // stroke(180);
+  // stroke(this.hue);
+
   let pos = this.body.position;
+  // ambientMaterial(255);
   //translate is cumulative
   push();
   translate(pos.x, pos.y);
+  noStroke();
+  fill(this.hue);
   sphere(this.r);
   // ellipse(0, 0, this.r * 2);
   pop();
@@ -27,5 +30,5 @@ Particle.prototype.show = function () {
 Particle.prototype.isOffScreen = function () {
   let x = this.body.position.x;
   let y = this.body.position.y;
-  return x < -50 || x > width + 50;
+  return x < -width / 2 || x > width + 50;
 };
