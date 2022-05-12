@@ -1,4 +1,4 @@
-function Plinko(x, y, w, h, a, c) {
+function Plinko(x, y, w, h, a, c, display) {
   const options = {
     friction: 0.5,
     restitution: 0.6,
@@ -22,7 +22,8 @@ function Plinko(x, y, w, h, a, c) {
     rotate(angle);
     strokeWeight(4);
     noStroke();
-    fill(c);
+    if (display === true) fill(c);
+    if (display === false) noFill();
     box(this.w, this.h);
     // rect(0, 0, this.w, this.h);
     pop();

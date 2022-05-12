@@ -1,8 +1,8 @@
-function Test(x, y, w, h, a, c) {
+function Float(x, y, w, h, a, c, display) {
   const options = {
     friction: 0.5,
     restitution: 0.6,
-    isStatic: true,
+    isSleeping: true,
     angle: a,
   };
   this.body = Bodies.rectangle(x, y, w, h, options);
@@ -17,14 +17,17 @@ function Test(x, y, w, h, a, c) {
     let angle = this.body.angle;
 
     push();
-    translate(pos.x, pos.y);
+    translate(pos.x, pos.y, 0);
     rectMode(CENTER);
     rotate(angle);
     strokeWeight(4);
     noStroke();
-    fill(c);
-    box(this.w, this.h, this.w);
+    if (display === true) fill(c);
+    if (display === false) noFill();
+    box(this.w, this.h);
+    // rect(0, 0, this.w, this.h);
     pop();
+
     // console.log(this);
   };
 }

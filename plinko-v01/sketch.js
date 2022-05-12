@@ -11,6 +11,9 @@ let Common = Matter.Common;
 let startX;
 let dWidth = 800;
 
+let xArray = [-10, 0, 20, -20, 40];
+let colors = ["orange", "blue", "green", "purple", "grey"];
+
 let engine;
 //world is the world inside of an engine
 let world;
@@ -41,38 +44,50 @@ function setup() {
   world = engine.world;
 
   //draw Player plinkos
-  let playerPosition = new Boundary(-50, -250, 40, 40, 0.9, "#0066ff");
+  let playerPosition = new Plinko(-20, -height / 2 + 200, 40, 40, 0.8, "brown");
   plinkos.push(playerPosition);
-  let playerHeight = new Boundary(-130, -200, 40, 40, 0.8, "#0066ff");
-  plinkos.push(playerHeight);
-  let playerWeight = new Boundary(-200, -100, 40, 40, 0.7, "#0066ff");
-  plinkos.push(playerWeight);
-  let playerCard = new Boundary(100, -50, 40, 40, 0.9, "#0066ff");
+
+  let playerCard = new Plinko(70, -height / 2 + 200, 40, 40, 0.8, "brown");
   plinkos.push(playerCard);
-  let playerAge = new Boundary(50, -80, 40, 40, -0.4, "#0066ff");
-  plinkos.push(playerAge);
-  let playerName = new Boundary(-330, 150, 40, 40, -0.4, "#0066ff");
-  plinkos.push(playerName);
-  let playerVictory = new Boundary(-490, 150, 40, 40, -0.4, "#0066ff");
-  plinkos.push(playerVictory);
-  let playerScore = new Boundary(-590, 190, 40, 40, -0.5, "#0066ff");
+
+  let playerHeight = new Plinko(-70, -height / 2 + 280, 40, 40, 0.8, "brown");
+  plinkos.push(playerHeight);
+
+  let playerWeight = new Plinko(20, -height / 2 + 280, 40, 40, 0.8, "brown");
+  plinkos.push(playerWeight);
+
+  let playerScore = new Plinko(120, -height / 2 + 280, 40, 40, 0.8, "brown");
   plinkos.push(playerScore);
+
+  let playerAge = new Plinko(-70, -height / 2 + 360, 40, 40, 0.8, "brown");
+  plinkos.push(playerAge);
+
+  let playerName = new Plinko(20, -height / 2 + 360, 40, 40, 0.8, "brown");
+  plinkos.push(playerName);
+
+  let playerVictory = new Plinko(120, -height / 2 + 360, 40, 40, 0.8, "brown");
+  plinkos.push(playerVictory);
+
   // console.log(plinkos);
 
   //polygons
   // polygons.push(new Poly(0, 50, 7, 40, "brown"));
 
   //test
-  test.push(new Test(0, 50, 40, 40, 0, "brown"));
 
   //draw club plinkos
-  clubs.push(new Boundary(250, 200, 40, 40, 0.9, "#ccccff"));
-  clubs.push(new Boundary(350, 200, 40, 40, 1, "#ccccff"));
+  let clubCountry = new Plinko(-20, -height / 2 + 440, 40, 40, 0.8, "#ccccff");
+  clubs.push(clubCountry);
+  let clubName = new Plinko(70, -height / 2 + 440, 40, 40, 0.8, "#ccccff");
+  clubs.push(clubName);
 
   //draw referees plinkos
-  referees.push(new Boundary(500, 550, 40, 40, -0.9, "#ffcc66"));
-  referees.push(new Boundary(550, 500, 40, 40, -1.1, "#ffcc66"));
-  referees.push(new Boundary(650, 500, 40, 40, -1.2, "#ffcc66"));
+  let refCountry = new Plinko(-70, -height / 2 + 520, 40, 40, 0.8, "#ffcc66");
+  referees.push(refCountry);
+  let refName = new Plinko(20, -height / 2 + 520, 40, 40, 0.8, "#ffcc66");
+  referees.push(refName);
+  let refCard = new Plinko(120, -height / 2 + 520, 40, 40, 0.8, "#ffcc66");
+  referees.push(refCard);
 
   //covariate - number of draws
   // draws.push(new Boundary(width / 2 - 10, 80, 30, 40, -0.1, "black"));
@@ -97,35 +112,73 @@ function setup() {
 }
 
 function draw() {
-  background(255);
   orbitControl();
   lights();
+  background(255);
 
-  if (frameCount % 120 == 0 && logistics.length <= 15) {
-    newLogistic();
+  push();
+  ambientMaterial(255);
+  fill(50);
+  noStroke();
+  translate(0, height / 2 - 50);
+  rotateX(HALF_PI);
+  plane(500, 500);
+  pop();
+
+  push();
+  // ambientMaterial(255);
+  fill("#8a3324");
+  noStroke();
+  translate(0, -150, -100);
+  rotateZ(0.1);
+  plane(400, 300);
+  pop();
+
+  push();
+  // ambientMaterial(255);
+  fill("#e0e0ff");
+  noStroke();
+  translate(0, 50, -50);
+  // rotateX(HALF_PI);
+  plane(250, 100);
+  pop();
+
+  push();
+  // ambientMaterial(255);
+  fill("#fbda98");
+  noStroke();
+  translate(20, 150, -75);
+  rotateZ(-0.1);
+  plane(320, 150);
+  pop();
+
+  // if (frameCount % 120 == 0 && logistics.length <= 15) {
+  //   newLogistic();
+  // }
+
+  if (frameCount % 240 == 20 && linears.length < 2) {
+    //x, y, r, f, d, color
+    newLinear(-10, -height / 2 + 50, 10, 0.5, 1, "orange");
+    // console.log(linears);
   }
 
-  if (frameCount % 240 == 20 && linears.length <= 6) {
-    newLinear();
-  }
+  // if (frameCount % 360 == 30 && linears.length <= 6) {
+  //   newPoisson();
+  // }
 
-  if (frameCount % 360 == 30 && linears.length <= 6) {
-    newPoisson();
-  }
+  // if (frameCount % 480 == 40 && linears.length <= 2) {
+  //   newMisc();
+  // }
 
-  if (frameCount % 480 == 40 && linears.length <= 2) {
-    newMisc();
-  }
-
-  for (let i = 0; i < logistics.length; i++) {
-    logistics[i].show();
-    if (logistics[i].isOffScreen()) {
-      //remove the particle from the world as well
-      World.remove(world, logistics[i].body);
-      logistics.splice(i, 1);
-      i--;
-    }
-  }
+  // for (let i = 0; i < logistics.length; i++) {
+  //   logistics[i].show();
+  //   if (logistics[i].isOffScreen()) {
+  //     //remove the particle from the world as well
+  //     World.remove(world, logistics[i].body);
+  //     logistics.splice(i, 1);
+  //     i--;
+  //   }
+  // }
 
   for (let i = 0; i < linears.length; i++) {
     linears[i].show();
@@ -137,25 +190,25 @@ function draw() {
     }
   }
 
-  for (let i = 0; i < poissons.length; i++) {
-    poissons[i].show();
-    if (poissons[i].isOffScreen()) {
-      //remove the particle from the world as well
-      World.remove(world, poissons[i].body);
-      poissons.splice(i, 1);
-      i--;
-    }
-  }
+  // for (let i = 0; i < poissons.length; i++) {
+  //   poissons[i].show();
+  //   if (poissons[i].isOffScreen()) {
+  //     //remove the particle from the world as well
+  //     World.remove(world, poissons[i].body);
+  //     poissons.splice(i, 1);
+  //     i--;
+  //   }
+  // }
 
-  for (let i = 0; i < miscs.length; i++) {
-    miscs[i].show();
-    if (miscs[i].isOffScreen()) {
-      //remove the particle from the world as well
-      World.remove(world, miscs[i].body);
-      miscs.splice(i, 1);
-      i--;
-    }
-  }
+  // for (let i = 0; i < miscs.length; i++) {
+  //   miscs[i].show();
+  //   if (miscs[i].isOffScreen()) {
+  //     //remove the particle from the world as well
+  //     World.remove(world, miscs[i].body);
+  //     miscs.splice(i, 1);
+  //     i--;
+  //   }
+  // }
   // fill(255);
 
   //draw all elements
@@ -176,7 +229,7 @@ function draw() {
 
   for (let i = 0; i < plinkos.length; i++) {
     plinkos[i].show();
-    console.log(plinkos[i].body);
+    // console.log(plinkos[i].body);
   }
 
   for (let i = 0; i < boundaries.length; i++) {
@@ -202,48 +255,57 @@ function draw() {
   for (let i = 0; i < test.length; i++) {
     test[i].show();
   }
+
+  // push();
+  // translate(-50, 100, -50);
+  // noStroke();
+  // fill("#ffcc66");
+  // box(45, 45, 20);
+  // pop();
+
+  // push();
+  // translate(80, 100, -50);
+  // noStroke();
+  // fill("#ffcc66");
+  // box(45, 45, 20);
+  // pop();
 }
 
-function newLogistic() {
-  if (random() > 0.5) {
-    startX = -5;
-  } else {
-    startX = 15;
-  }
-  //(x, y, r, f, d, blue)
-  let lg = new Particle(startX, -height / 2, 10, 0, 0.01, "red");
-  logistics.push(lg);
-}
+// function newLogistic() {
+//   if (random() > 0.5) {
+//     startX = -5;
+//   } else {
+//     startX = 15;
+//   }
+//   //(x, y, r, f, d, blue)
+//   let lg = new Particle(startX, -height / 2, 10, 0, 0.01, "red");
+//   logistics.push(lg);
+// }
 
-function newLinear() {
-  if (random() > 0.5) {
-    startX = -5;
-  } else {
-    startX = 15;
-  }
-  //(x, y, r, f, d, red)
-  let ln = new Particle(startX, -height / 2, 10, 0, 0.01, "blue");
+function newLinear(startX, startY, r, f, d, color) {
+  //x, y, r, f, d, color
+  let ln = new Particle(startX, startY, r, f, d, color);
   linears.push(ln);
 }
 
-function newPoisson() {
-  if (random() > 0.5) {
-    startX = -5;
-  } else {
-    startX = 15;
-  }
-  //(x, y, r, f, d, green)
-  let pn = new Particle(startX, -height / 2, 10, 0, 0.02, "orange");
-  poissons.push(pn);
-}
+// function newPoisson() {
+//   if (random() > 0.5) {
+//     startX = -5;
+//   } else {
+//     startX = 15;
+//   }
+//   //(x, y, r, f, d, green)
+//   let pn = new Particle(startX, -height / 2, 10, 0, 0.02, "orange");
+//   poissons.push(pn);
+// }
 
-function newMisc() {
-  if (random() > 0.5) {
-    startX = -5;
-  } else {
-    startX = 15;
-  }
-  //(x, y, r, f, d, green)
-  let ms = new Particle(startX, -height / 2, 10, 0, 0.02, "green");
-  miscs.push(ms);
-}
+// function newMisc() {
+//   if (random() > 0.5) {
+//     startX = -5;
+//   } else {
+//     startX = 15;
+//   }
+//   //(x, y, r, f, d, green)
+//   let ms = new Particle(startX, -height / 2, 10, 0, 0.02, "green");
+//   miscs.push(ms);
+// }

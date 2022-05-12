@@ -36,6 +36,6 @@ function Poly(x, y, sides, r, c) {
     fill(c);
     drawPolygon(0, 0, this.r, this.sides);
     pop();
-    console.log(this.body);
+    // console.log(this.body);
   };
 }
