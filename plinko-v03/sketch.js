@@ -1,6 +1,5 @@
-//User Interface Button
+//User Interface Radio Button
 let radioSelection;
-//
 
 //Rename Matter.js names
 let Engine = Matter.Engine;
@@ -79,16 +78,7 @@ function setup() {
   radio.selected("2");
   textAlign(CENTER);
 
-  let val = radio.value();
   radioSelection = createGraphics(500, 500);
-  if (val) {
-    radioSelection.background("white");
-    radioSelection.text(`item cost is ${val}`, width / 2, height / 2);
-    radioSelection.textSize(100);
-    radioSelection.textAlign(CENTER);
-
-    console.log(val);
-  }
 
   // console.log(val);
 
@@ -362,9 +352,15 @@ function draw() {
 
   push();
   translate(20, 150, -150);
-
+  let val = radio.value();
+  if (val) {
+    radioSelection.background("white");
+    radioSelection.text(`item cost is ${val}`, width / 2, height / 2);
+    radioSelection.textSize(16);
+    radioSelection.textAlign(CENTER);
+    // console.log(val);
+  }
   texture(radioSelection);
-
   plane(500, 500);
   pop();
 }
