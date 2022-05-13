@@ -1,3 +1,7 @@
+//User Interface Button
+let radioSelection;
+//
+
 //Rename Matter.js names
 let Engine = Matter.Engine;
 let World = Matter.World;
@@ -12,6 +16,7 @@ let Common = Matter.Common;
 //Define this world specific variables
 let engine;
 //world is the world inside of an engine
+
 let world;
 let ground;
 let boundaries = [];
@@ -64,7 +69,29 @@ let called = false;
 
 function setup() {
   createCanvas(dWidth, dWidth, WEBGL);
-  // colorMode(HSB);
+
+  radio = createRadio();
+  radio.option("1", "Linear");
+  radio.option("2", "Logistic");
+  radio.option("3", "Poisson");
+  radio.option("4", "Miscellaneous");
+  radio.style("width", "30px");
+  radio.selected("2");
+  textAlign(CENTER);
+
+  let val = radio.value();
+  radioSelection = createGraphics(500, 500);
+  if (val) {
+    radioSelection.background("white");
+    radioSelection.text(`item cost is ${val}`, width / 2, height / 2);
+    radioSelection.textSize(100);
+    radioSelection.textAlign(CENTER);
+
+    console.log(val);
+  }
+
+  // console.log(val);
+
   rectMode(CENTER);
   engine = Engine.create();
   world = engine.world;
@@ -239,6 +266,11 @@ function setup() {
   frameRate(60);
 }
 
+function mousePressed() {
+  World.remove(world, clubs[0].body);
+  clubs.splice(0, 1);
+}
+
 function draw() {
   orbitControl();
   lights();
@@ -327,6 +359,14 @@ function draw() {
   for (let i = 0; i < referees.length; i++) {
     referees[i].show();
   }
+
+  push();
+  translate(20, 150, -150);
+
+  texture(radioSelection);
+
+  plane(500, 500);
+  pop();
 }
 
 function team1(startX, startY, r, f, d, color) {
