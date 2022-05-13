@@ -235,18 +235,6 @@ function setup() {
   let bound = new Boundary(0, height / 2, width, 100, 0, "black");
   boundaries.push(bound);
 
-  float = new Float(
-    90,
-    -height / 2 + 460,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "yellow",
-    true
-  );
-  floats.push(float);
-
-  console.log(counter);
   Runner.run(engine);
   frameRate(60);
 }
@@ -339,10 +327,6 @@ function draw() {
   for (let i = 0; i < referees.length; i++) {
     referees[i].show();
   }
-
-  for (let i = 0; i < floats.length; i++) {
-    floats[i].show();
-  }
 }
 
 function team1(startX, startY, r, f, d, color) {
@@ -351,5 +335,4 @@ function team1(startX, startY, r, f, d, color) {
     teams.push(team);
   }
   called = true;
-  console.log(called);
 }
