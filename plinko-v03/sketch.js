@@ -28,7 +28,7 @@ let polygons = [];
 let cols = 10;
 let draws = [];
 let angles = [-0.2, 0.9, 1.5, 2.1, -0.9, -1.7, -2.4];
-let clubs = [];
+let leagues = [];
 let referees = [];
 //analysts
 let teams = [];
@@ -44,8 +44,8 @@ let playerAge;
 let playerName;
 let playerVictory;
 
-let clubCountry;
-let clubName;
+let leagueCountry;
+let leagueName;
 
 let refCountry;
 let refName;
@@ -73,18 +73,21 @@ function setup() {
   createCanvas(dWidth, dWidth, WEBGL);
 
   radio = createRadio();
-  radio.option("1", "Covariates Related to Players, Leagues, and Referees");
-  radio.option("2", "Only Covariates Related to Players");
-  radio.option("3", "Only Covariates Related to Leagues");
-  radio.option("4", "Only Covariates Related to Referees");
-  radio.option("5", "Covariates Related to Players and Leagues");
-  radio.option("6", "Covariates Related to Players and Referees");
-  radio.option("7", "Only Covariates Related to Draws");
-  radio.option("8", "No Covariate Related to Players");
+  radio.option("PLR", "Covariates Related to Players, Leagues, and Referees");
+  radio.option("PL", "Covariates Related to Players and Leagues");
+  radio.option("PR", "Covariates Related to Players and Referees");
+  radio.option("P", "Only Covariates Related to Players");
+  radio.option("L", "Only Covariates Related to Leagues");
+  radio.option("R", "Only Covariates Related to Referees");
+  radio.option("D", "Only Covariates Related to Draws");
+  radio.option("N", "No Covariate Related to Players");
   radio.style("width", "800px");
   //customize style using CSS
+
+  radio.style("display: grid");
   radio.style("font-family:Arial");
-  textSize(26);
+  radio.style("font-size:26px");
+  // textSize(36);
   // radio.selected("2");
   textAlign(LEFT);
   console.log(radio);
@@ -97,7 +100,9 @@ function setup() {
   world = engine.world;
 
   //create plinkos
-  addAll();
+  addPlayers();
+  addLeagues();
+  addReferees();
 
   //create divider
   for (let i = -cols / 2; i < cols + 1; i++) {
@@ -152,7 +157,7 @@ function draw() {
   plane(400, 300);
   pop();
 
-  //club background
+  //League background
   push();
   // ambientMaterial(255);
   fill("#e0e0ff");
@@ -197,13 +202,19 @@ function draw() {
     }
   }
 
-  // for (let i = 0; i < draws.length; i++) {
-  //   draws[i].show();
-  // }
+  if (!val) {
+    for (let i = 0; i < plinkos.length; i++) {
+      plinkos[i].show();
+    }
 
-  // for (let i = 0; i < referees.length; i++) {
-  //   referees[i].show();
-  // }
+    for (let i = 0; i < leagues.length; i++) {
+      leagues[i].show();
+    }
+
+    for (let i = 0; i < referees.length; i++) {
+      referees[i].show();
+    }
+  }
   val = radio.value();
   setScene(val);
   //draw Tooltip
@@ -224,6 +235,6 @@ function draw() {
 // **************HELPER FUNCTIONS
 
 function keyPressed() {
-  World.remove(world, clubs[0].body);
-  clubs.splice(0, 1);
+  World.remove(world, Leagues[0].body);
+  Leagues.splice(0, 1);
 }
