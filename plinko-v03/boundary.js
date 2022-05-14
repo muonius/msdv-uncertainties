@@ -10,6 +10,7 @@ function Boundary(x, y, w, h, a, c) {
 
   this.w = w;
   this.h = h;
+  this.body.label = "boundary";
   World.add(world, this.body);
 
   this.show = function () {

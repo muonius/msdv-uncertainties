@@ -10,6 +10,7 @@ function Plinko(x, y, w, h, a, c, display) {
 
   this.w = w;
   this.h = h;
+  this.body.label = "plinko";
   World.add(world, this.body);
 
   this.show = function () {

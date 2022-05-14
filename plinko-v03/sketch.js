@@ -3,6 +3,15 @@ let radioSelection;
 let oddRatio;
 let oddratios = [-2, -1, 0, 1, 2, 3];
 let val;
+const COLOR = {
+  BACKGROUND: "#212529",
+  OUTER: "#495057",
+  INNER: "#15aabf",
+  BUMPER: "#fab005",
+  BUMPER_LIT: "#fff3bf",
+  PADDLE: "#e64980",
+  PINBALL: "#dee2e6",
+};
 
 //Rename Matter.js names
 let Engine = Matter.Engine;
@@ -121,16 +130,7 @@ function setup() {
   let bound = new Boundary(0, height / 2, width, 100, 0, "black");
   boundaries.push(bound);
 
-  for (let i = 0; i < teams.length; i++) {
-    let options = {
-      bodyA: playerCard.body,
-      bodyB: teams[i].body,
-    };
-    let detector = Constraint.create(options);
-    detectors.push(detector);
-    World.add(world, detector);
-  }
-  console.log(detectors);
+  createLabel();
 
   Runner.run(engine);
   frameRate(120);
