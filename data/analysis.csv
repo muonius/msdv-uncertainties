@@ -3,66 +3,45 @@ Data,Linear,6
 Data,Logistic,15
 Data,Miscellaneous,2
 Data,Poisson,6
-Linear,Player | Goals,1
-Linear,Draws,1
-Linear,Player | Position,5
-Linear,Player | Age,4
-Linear,Player | Height,4
-Linear,Player | Victories,1
-Linear,Player | Weight,4
-Linear,League | Self,3
-Linear,League | Country,2
-Linear,Referee | Self,3
-Linear,Referee | Country,1
-Logistic,Player | Position,10
-Logistic,Player | Height,5
-Logistic,Player | Weight,5
-Logistic,League | Self,1
-Logistic,League | Country,4
-Logistic,Player | Goals,3
-Logistic,Player | Victories,1
-Logistic,Player | Cards,2
-Logistic,Player | Self,1
-Logistic,Referee | Country,3
-Logistic,Referee | Cards,1
-Poisson,Player | Position,4
-Poisson,Player | Height,1
-Poisson,Player | Weight,2
-Poisson,Player | Age,2
-Poisson,League | Country,1
-Poisson,Player | Goals,2
-Poisson,Player | Victories,1
-Miscellaneous,Player | Position,1
-Miscellaneous,Player | Height,1
-Miscellaneous,Player | Age,1
-Player | Goals,2.93,1
-Player | Position,2.88,1
-Player | Height,2.88,1
-Player | Age,2.88,1
+Linear,Players | Leagues | Referees,3
+Linear,Players | Referees,1
+Linear,Players | Leagues,1
+Linear,Players | Draws,1
+Logistic,Players | Referees,4
+Logistic,Players | Leagues,3
+Logistic,Leagues,1
+Logistic,Players,5
+Logistic,None,2
+Poisson,Players | Leagues,1
+Poisson,Players,5
+Miscellaneous,Players,1
+Miscellaneous,None,1
+Players,2.93,1
+Players,2.88,1
 None,1.71,1
-Player | Position,1.48,1
-Referee | Country,1.48,1
-Player | Position,1.41,1
-Player | Name,1.4,1
+Players | Referees,1.48,1
+Players,1.42,1
+Players,1.41,1
+Players,1.4,1
+Players,1.39,1
 None,1.39,1
-Player | Position,1.39,1
+Players | Leagues,1.38,1
+Players,1.38,1
 None,1.38,1
-2 covariates,1.38,1
-3 covariates,1.38,1
-2 covariates,1.32,1
-2 covariates,1.31,1
-2 covariates,1.31,1
-6 covariates,1.3,1
-3 covariates,1.28,1
-6 covariates,1.28,1
-3 covariates,1.21,1
-6 covariates,1.21,1
-4 covariates,1.19,1
-7 covariates,1.18,1
-6 covariates,1.12,1
-2 covariates,1.1,1
-3 covariates,1.03,1
-1 covariate,1.02,1
-4 covariates,1,1
-2 covariates,0.96,1
-2 covariates,0.89,1
+Players | Referees,1.34,1
+Players,1.32,1
+Players | Referees,1.31,1
+Players | Leagues,1.31,1
+Players | Leagues,1.3,1
+Players | Leagues | Referees,1.28,1
+Players,1.28,1
+Players | Leagues,1.25,1
+Players | Leagues | Referees,1.21,1
+Players | Referees,1.21,1
+Players | Leagues | Referees,1.18,1
+Players | Leagues,1.12,1
+Players,1.1,1
+Players | Draws,1.03,1
+Leagues,1.02,1
+Players | Referees,0.96,1
+Players,0.89,1

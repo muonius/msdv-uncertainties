@@ -1,5 +1,7 @@
 //User Interface Radio Button
 let radioSelection;
+let oddRatio;
+let oddratios = [-2, -1, 0, 1, 2, 3];
 
 //Rename Matter.js names
 let Engine = Matter.Engine;
@@ -70,15 +72,20 @@ function setup() {
   createCanvas(dWidth, dWidth, WEBGL);
 
   radio = createRadio();
-  radio.option("1", "Linear");
-  radio.option("2", "Logistic");
-  radio.option("3", "Poisson");
-  radio.option("4", "Miscellaneous");
-  radio.style("width", "30px");
+  radio.option("1", "No Covariate Selected");
+  radio.option("2", "Only Covariates Related to Players");
+  radio.option("3", "Only Covariates Related to Leagues");
+  radio.option("4", "Only Covariates Related to Referees");
+  radio.option("5", "Covariates Related to Players and Leagues");
+  radio.option("6", "Covariates Related to Players and Referees");
+  radio.option("7", "Covariates Related to Players, Leagues, and Referees");
+  radio.option("8", "Only Covariates Related to Draws");
+  radio.style("width", "800px");
   radio.selected("2");
-  textAlign(CENTER);
+  textAlign(LEFT);
 
   radioSelection = createGraphics(500, 500);
+  oddRatio = createGraphics(500, 500);
 
   // console.log(val);
 
@@ -86,157 +93,8 @@ function setup() {
   engine = Engine.create();
   world = engine.world;
 
-  //draw Player plinkos
-  playerPosition = new Plinko(
-    -20,
-    -height / 2 + 200,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "brown",
-    true
-  );
-  plinkos.push(playerPosition);
-
-  playerCard = new Plinko(
-    70,
-    -height / 2 + 200,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "brown",
-    true
-  );
-  plinkos.push(playerCard);
-
-  playerHeight = new Plinko(
-    -70,
-    -height / 2 + 280,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "brown",
-    true
-  );
-  plinkos.push(playerHeight);
-
-  playerWeight = new Plinko(
-    20,
-    -height / 2 + 280,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "brown",
-    true
-  );
-  plinkos.push(playerWeight);
-
-  playerScore = new Plinko(
-    120,
-    -height / 2 + 280,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "brown",
-    true
-  );
-  plinkos.push(playerScore);
-
-  playerAge = new Plinko(
-    -70,
-    -height / 2 + 360,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "brown",
-    true
-  );
-  plinkos.push(playerAge);
-
-  playerName = new Plinko(
-    20,
-    -height / 2 + 360,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "brown",
-    true
-  );
-  plinkos.push(playerName);
-
-  playerVictory = new Plinko(
-    120,
-    -height / 2 + 360,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "brown",
-    true
-  );
-  plinkos.push(playerVictory);
-
-  // console.log(plinkos);
-
-  //polygons
-  // polygons.push(new Poly(0, 50, 7, 40, "brown"));
-
-  //draw club plinkos
-  clubCountry = new Plinko(
-    posStart.x,
-    posStart.y,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "#ccccff",
-    true
-  );
-  clubs.push(clubCountry);
-  clubName = new Plinko(
-    70,
-    -height / 2 + 440,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "#ccccff",
-    true
-  );
-  clubs.push(clubName);
-
-  //draw referees plinkos
-  refCountry = new Plinko(
-    -70,
-    -height / 2 + 520,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "#ffcc66",
-    true
-  );
-  referees.push(refCountry);
-  refName = new Plinko(
-    20,
-    -height / 2 + 520,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "#ffcc66",
-    true
-  );
-  referees.push(refName);
-  refCard = new Plinko(
-    120,
-    -height / 2 + 520,
-    pRadius,
-    pRadius,
-    pAngleStart,
-    "#ffcc66",
-    true
-  );
-  referees.push(refCard);
-
-  //covariate - number of draws
-  // draws.push(new Boundary(width / 2 - 10, 80, 30, 40, -0.1, "black"));
-
+  //create plinkos
+  addPlinko();
   //create divider
   for (let i = -cols / 2; i < cols + 1; i++) {
     const spacing = width / cols;
@@ -256,25 +114,30 @@ function setup() {
   frameRate(60);
 }
 
-function mousePressed() {
-  World.remove(world, clubs[0].body);
-  clubs.splice(0, 1);
-}
-
 function draw() {
   orbitControl();
   lights();
   background(255);
 
+  //*****************ODD RATIO PLANE */
+  //draw oddRatio axis
+  oddRatio.background("red");
+  oddRatio.text("-2   -1   0    1   2   3", 240, 300);
+  oddRatio.textSize(65);
+  oddRatio.textAlign(CENTER);
+
+  //draw bottom platform
   push();
-  ambientMaterial(255);
-  fill(50);
+  // ambientMaterial(255);
+  // fill(50);
   noStroke();
   translate(0, height / 2 - 50);
   rotateX(HALF_PI);
+  texture(oddRatio);
   plane(500, 500);
   pop();
 
+  //player background
   push();
   // ambientMaterial(255);
   fill("#8a3324");
@@ -284,6 +147,7 @@ function draw() {
   plane(400, 300);
   pop();
 
+  //club background
   push();
   // ambientMaterial(255);
   fill("#e0e0ff");
@@ -293,6 +157,7 @@ function draw() {
   plane(250, 100);
   pop();
 
+  //referee background
   push();
   // ambientMaterial(255);
   fill("#fbda98");
@@ -302,20 +167,8 @@ function draw() {
   plane(320, 150);
   pop();
 
-  team1(-10, -height / 2 + 50, 10, 0.5, 1, "orange");
-
-  for (let i = 0; i < teams.length; i++) {
-    teams[i].show();
-    if (teams[i].isOffScreen()) {
-      //remove the particle from the world as well
-      World.remove(world, teams[i].body);
-      teams.splice(i, 1);
-      i--;
-    }
-  }
-
-  //draw all elements
-  // World.add(world, float.body);
+  // //draw all elements
+  // // World.add(world, float.body);
 
   for (let i = 0; i < boundaries.length; i++) {
     boundaries[i].show();
@@ -325,35 +178,73 @@ function draw() {
     dividers[i].show();
   }
 
-  for (let i = 0; i < plinkos.length; i++) {
-    plinkos[i].show();
-    // console.log(plinkos[i].body);
-  }
+  // for (let i = 0; i < plinkos.length; i++) {
+  //   plinkos[i].show();
+  //   // console.log(plinkos[i].body);
+  // }
 
   for (let i = 0; i < boundaries.length; i++) {
     boundaries[i].show();
   }
 
-  for (let i = 0; i < draws.length; i++) {
-    draws[i].show();
-  }
+  // for (let i = 0; i < draws.length; i++) {
+  //   draws[i].show();
+  // }
 
-  for (let i = 0; i < polygons.length; i++) {
-    polygons[i].show();
-  }
+  // for (let i = 0; i < clubs.length; i++) {
+  //   clubs[i].show();
+  // }
 
-  for (let i = 0; i < clubs.length; i++) {
-    clubs[i].show();
-  }
+  // for (let i = 0; i < referees.length; i++) {
+  //   referees[i].show();
+  // }
 
-  for (let i = 0; i < referees.length; i++) {
-    referees[i].show();
+  let val = radio.value();
+  if (val === "1") {
+    if (frameCount % 60 == 0 && teams.length < 2) {
+      //x, y, r, f, d, color
+      team1();
+      // console.log(linears);
+    }
+
+    for (let i = 0; i < plinkos.length; i++) {
+      World.remove(world, plinkos[i].body);
+      plinkos.splice(i, 1);
+      i--;
+    }
+
+    for (let i = 0; i < clubs.length; i++) {
+      World.remove(world, clubs[i].body);
+      clubs.splice(i, 1);
+      i--;
+    }
+
+    for (let i = 0; i < referees.length; i++) {
+      World.remove(world, referees[i].body);
+      referees.splice(i, 1);
+      i--;
+    }
+
+    for (let i = 0; i < teams.length; i++) {
+      teams[i].show();
+      if (teams[i].isOffScreen()) {
+        //remove the particle from the world as well
+        World.remove(world, teams[i].body);
+        teams.splice(i, 1);
+        i--;
+      }
+    }
+    // deleteClub();
+    // radioSelection.background("white");
+    // radioSelection.text(`item cost is ${val}`, width / 2, height / 2);
+    // radioSelection.textSize(16);
+    // radioSelection.textAlign(CENTER);
+    // // console.log(val);
   }
 
   push();
   translate(20, 150, -150);
-  let val = radio.value();
-  if (val) {
+  if (val === "1") {
     radioSelection.background("white");
     radioSelection.text(`item cost is ${val}`, width / 2, height / 2);
     radioSelection.textSize(16);
@@ -365,10 +256,16 @@ function draw() {
   pop();
 }
 
-function team1(startX, startY, r, f, d, color) {
-  if (called === false) {
-    let team = new Particle(startX, startY, r, f, d, color);
-    teams.push(team);
-  }
-  called = true;
+function keyPressed() {
+  World.remove(world, clubs[0].body);
+  clubs.splice(0, 1);
+}
+
+function team1() {
+  let teamA = new Particle(150, -height / 2 + 50, 10, 0.5, 1, "orange");
+  teams.push(teamA);
+  let teamB = new Particle(20, -height / 2 + 50, 10, 0.5, 1, "blue");
+  teams.push(teamB);
+  let teamC = new Particle(20, -height / 2 + 50, 10, 0.5, 1, "blue");
+  teams.push(teamC);
 }
