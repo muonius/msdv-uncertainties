@@ -2,6 +2,7 @@
 let radioSelection;
 let oddRatio;
 let oddratios = [-2, -1, 0, 1, 2, 3];
+let val;
 
 //Rename Matter.js names
 let Engine = Matter.Engine;
@@ -81,20 +82,19 @@ function setup() {
   radio.option("7", "Covariates Related to Players, Leagues, and Referees");
   radio.option("8", "Only Covariates Related to Draws");
   radio.style("width", "800px");
-  radio.selected("2");
+  // radio.selected("2");
   textAlign(LEFT);
 
   radioSelection = createGraphics(500, 500);
   oddRatio = createGraphics(500, 500);
-
-  // console.log(val);
 
   rectMode(CENTER);
   engine = Engine.create();
   world = engine.world;
 
   //create plinkos
-  addPlinko();
+  addPlayers();
+
   //create divider
   for (let i = -cols / 2; i < cols + 1; i++) {
     const spacing = width / cols;
@@ -111,12 +111,13 @@ function setup() {
   boundaries.push(bound);
 
   Runner.run(engine);
-  frameRate(60);
+  frameRate(120);
 }
 
 function draw() {
   orbitControl();
   lights();
+
   background(255);
 
   //*****************ODD RATIO PLANE */
@@ -178,11 +179,6 @@ function draw() {
     dividers[i].show();
   }
 
-  // for (let i = 0; i < plinkos.length; i++) {
-  //   plinkos[i].show();
-  //   // console.log(plinkos[i].body);
-  // }
-
   for (let i = 0; i < boundaries.length; i++) {
     boundaries[i].show();
   }
@@ -191,40 +187,77 @@ function draw() {
   //   draws[i].show();
   // }
 
-  // for (let i = 0; i < clubs.length; i++) {
-  //   clubs[i].show();
-  // }
-
   // for (let i = 0; i < referees.length; i++) {
   //   referees[i].show();
   // }
+  val = radio.value();
+  setScene(val);
+  //draw Tooltip
+  push();
+  translate(20, 150, -150);
 
-  let val = radio.value();
+  if (val) {
+    radioSelection.background("white");
+    radioSelection.text(`item cost is ${val}`, width / 2, height / 2);
+    radioSelection.textSize(16);
+    radioSelection.textAlign(CENTER);
+    texture(radioSelection);
+  }
+  plane(500, 500);
+  pop();
+}
+
+// **************HELPER FUNCTIONS
+
+function keyPressed() {
+  World.remove(world, clubs[0].body);
+  clubs.splice(0, 1);
+}
+
+function onlyPlayers() {
+  let teamD = new Particle(150, -height / 2 + 50, 10, 0.5, 1, "purple");
+  teams.push(teamD);
+  let teamE = new Particle(150, -height / 2 + 50, 10, 0.5, 1, "purple");
+  teams.push(teamE);
+  let teamF = new Particle(20, -height / 2 + 50, 10, 0.5, 1, "purple");
+  teams.push(teamF);
+  let teamG = new Particle(20, -height / 2 + 50, 10, 0.5, 1, "purple");
+  teams.push(teamG);
+}
+
+function noCovariates() {
+  let teamA = new Particle(150, -height / 2 + 50, 10, 0.5, 1, "orange");
+  teams.push(teamA);
+  let teamB = new Particle(20, -height / 2 + 50, 10, 0.5, 1, "blue");
+  teams.push(teamB);
+  let teamC = new Particle(20, -height / 2 + 50, 10, 0.5, 1, "blue");
+  teams.push(teamC);
+}
+
+function removeBodies() {
+  for (let i = 0; i < plinkos.length; i++) {
+    World.remove(world, plinkos[i].body);
+    plinkos.splice(i, 1);
+    i--;
+  }
+  for (let i = 0; i < clubs.length; i++) {
+    World.remove(world, clubs[i].body);
+    clubs.splice(i, 1);
+    i--;
+  }
+  for (let i = 0; i < referees.length; i++) {
+    World.remove(world, referees[i].body);
+    referees.splice(i, 1);
+    i--;
+  }
+}
+
+function setScene(val) {
   if (val === "1") {
+    removeBodies();
     if (frameCount % 60 == 0 && teams.length < 2) {
-      //x, y, r, f, d, color
-      team1();
-      // console.log(linears);
+      noCovariates();
     }
-
-    for (let i = 0; i < plinkos.length; i++) {
-      World.remove(world, plinkos[i].body);
-      plinkos.splice(i, 1);
-      i--;
-    }
-
-    for (let i = 0; i < clubs.length; i++) {
-      World.remove(world, clubs[i].body);
-      clubs.splice(i, 1);
-      i--;
-    }
-
-    for (let i = 0; i < referees.length; i++) {
-      World.remove(world, referees[i].body);
-      referees.splice(i, 1);
-      i--;
-    }
-
     for (let i = 0; i < teams.length; i++) {
       teams[i].show();
       if (teams[i].isOffScreen()) {
@@ -234,38 +267,24 @@ function draw() {
         i--;
       }
     }
-    // deleteClub();
-    // radioSelection.background("white");
-    // radioSelection.text(`item cost is ${val}`, width / 2, height / 2);
-    // radioSelection.textSize(16);
-    // radioSelection.textAlign(CENTER);
-    // // console.log(val);
   }
 
-  push();
-  translate(20, 150, -150);
-  if (val === "1") {
-    radioSelection.background("white");
-    radioSelection.text(`item cost is ${val}`, width / 2, height / 2);
-    radioSelection.textSize(16);
-    radioSelection.textAlign(CENTER);
-    // console.log(val);
+  if (val === "2") {
+    addPlayers();
+    for (let i = 0; i < plinkos.length; i++) {
+      plinkos[i].show();
+    }
+    if (teams.length < 4) {
+      onlyPlayers();
+    }
+    for (let i = 0; i < teams.length; i++) {
+      teams[i].show();
+      if (teams[i].isOffScreen()) {
+        //remove the particle from the world as well
+        World.remove(world, teams[i].body);
+        teams.splice(i, 1);
+        i--;
+      }
+    }
   }
-  texture(radioSelection);
-  plane(500, 500);
-  pop();
-}
-
-function keyPressed() {
-  World.remove(world, clubs[0].body);
-  clubs.splice(0, 1);
-}
-
-function team1() {
-  let teamA = new Particle(150, -height / 2 + 50, 10, 0.5, 1, "orange");
-  teams.push(teamA);
-  let teamB = new Particle(20, -height / 2 + 50, 10, 0.5, 1, "blue");
-  teams.push(teamB);
-  let teamC = new Particle(20, -height / 2 + 50, 10, 0.5, 1, "blue");
-  teams.push(teamC);
 }
