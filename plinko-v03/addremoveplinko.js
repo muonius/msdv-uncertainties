@@ -17,7 +17,7 @@ function addPlayers() {
     pRadius,
     pRadius,
     pAngleStart,
-    "brown",
+    "green",
     true
   );
   plinkos.push(playerCard);

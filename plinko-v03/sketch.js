@@ -67,7 +67,8 @@ let posStart = { x: -20, y: 40 };
 let xArray = [-10, 0, 20, -20, 40];
 let colors = ["orange", "blue", "green", "purple", "grey"];
 
-let called = false;
+//Declare text variables
+let detectors = [];
 
 function setup() {
   createCanvas(dWidth, dWidth, WEBGL);
@@ -81,7 +82,8 @@ function setup() {
   radio.option("R", "Only Covariates Related to Referees");
   radio.option("D", "Only Covariates Related to Draws");
   radio.option("N", "No Covariate Related to Players");
-  radio.style("width", "800px");
+  radio.style("width", "500px");
+  radio.style("transform: translate(900px,-800px)");
   //customize style using CSS
 
   radio.style("display: grid");
@@ -90,7 +92,7 @@ function setup() {
   // textSize(36);
   // radio.selected("2");
   textAlign(LEFT);
-  console.log(radio);
+  // console.log(radio);
 
   radioSelection = createGraphics(500, 500);
   oddRatio = createGraphics(500, 500);
@@ -118,6 +120,17 @@ function setup() {
   //create outer bound
   let bound = new Boundary(0, height / 2, width, 100, 0, "black");
   boundaries.push(bound);
+
+  for (let i = 0; i < teams.length; i++) {
+    let options = {
+      bodyA: playerCard.body,
+      bodyB: teams[i].body,
+    };
+    let detector = Constraint.create(options);
+    detectors.push(detector);
+    World.add(world, detector);
+  }
+  console.log(detectors);
 
   Runner.run(engine);
   frameRate(120);
