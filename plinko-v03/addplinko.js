@@ -299,3 +299,27 @@ function addReferees() {
   );
   referees.push(refCard);
 }
+
+function removePlayers() {
+  for (let i = 0; i < plinkos.length; i++) {
+    World.remove(world, plinkos[i].body);
+    plinkos.splice(i, 1);
+    i--;
+  }
+}
+
+function removeClubs() {
+  for (let i = 0; i < clubs.length; i++) {
+    World.remove(world, clubs[i].body);
+    clubs.splice(i, 1);
+    i--;
+  }
+}
+
+function removeReferees() {
+  for (let i = 0; i < referees.length; i++) {
+    World.remove(world, referees[i].body);
+    referees.splice(i, 1);
+    i--;
+  }
+}

@@ -1,7 +1,7 @@
 function Particle(x, y, r, f, d, color) {
   this.hue = color;
   const options = {
-    restitution: 0.6,
+    restitution: 0.1,
     friction: f,
     density: d,
   };
