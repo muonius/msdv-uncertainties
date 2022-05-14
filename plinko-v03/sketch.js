@@ -82,8 +82,12 @@ function setup() {
   radio.option("7", "Only Covariates Related to Draws");
   radio.option("8", "No Covariate Related to Players");
   radio.style("width", "800px");
+  //customize style using CSS
+  radio.style("font-family:Arial");
+  textSize(26);
   // radio.selected("2");
   textAlign(LEFT);
+  console.log(radio);
 
   radioSelection = createGraphics(500, 500);
   oddRatio = createGraphics(500, 500);
@@ -209,7 +213,7 @@ function draw() {
   if (val) {
     radioSelection.background("white");
     radioSelection.text(`item cost is ${val}`, width / 2, height / 2);
-    radioSelection.textSize(16);
+    radioSelection.textSize(20);
     radioSelection.textAlign(CENTER);
     texture(radioSelection);
   }
@@ -222,99 +226,4 @@ function draw() {
 function keyPressed() {
   World.remove(world, clubs[0].body);
   clubs.splice(0, 1);
-}
-
-function onlyReferees() {
-  let teamK = new Particle(200, -height / 2 + 50, 10, 0.5, 1, "brown");
-  teams.push(teamK);
-  let teamL = new Particle(-10, -height / 2 + 50, 10, 0.1, 0.1, "brown");
-  teams.push(teamL);
-}
-
-function onlyClubs() {
-  let teamF = new Particle(0, -height / 2 + 50, 10, 0.5, 1, "pink");
-  teams.push(teamF);
-  let teamG = new Particle(20, -height / 2 + 50, 10, 0.1, 0.1, "pink");
-  teams.push(teamG);
-}
-function onlyPlayers() {
-  let teamD = new Particle(100, -height / 2 + 50, 10, 0.1, 0.5, "purple");
-  teams.push(teamD);
-  let teamE = new Particle(150, -height / 2 + 50, 10, 0.1, 0.5, "purple");
-  teams.push(teamE);
-  let teamF = new Particle(40, -height / 2 + 50, 10, 0.1, 0.5, "purple");
-  teams.push(teamF);
-  let teamG = new Particle(-20, -height / 2 + 50, 10, 0.1, 0.5, "purple");
-  teams.push(teamG);
-}
-
-function noCovariates() {
-  let teamA = new Particle(150, -height / 2 + 50, 10, 0.5, 1, "orange");
-  teams.push(teamA);
-  let teamB = new Particle(170, -height / 2 + 50, 10, 0.5, 1, "blue");
-  teams.push(teamB);
-  let teamC = new Particle(20, -height / 2 + 50, 10, 0.5, 1, "blue");
-  teams.push(teamC);
-}
-
-function threeCovariates() {
-  let teamH = new Particle(150, -height / 2 + 50, 10, 0.5, 1, "green");
-  teams.push(teamH);
-  let teamI = new Particle(170, -height / 2 + 50, 10, 0.5, 1, "green");
-  teams.push(teamI);
-  let teamJ = new Particle(20, -height / 2 + 50, 10, 0.5, 1, "green");
-  teams.push(teamJ);
-}
-
-function setScene(val) {
-  if (val === "1") {
-    for (let i = 0; i < plinkos.length; i++) {
-      plinkos[i].show();
-    }
-
-    for (let i = 0; i < clubs.length; i++) {
-      clubs[i].show();
-    }
-
-    for (let i = 0; i < referees.length; i++) {
-      referees[i].show();
-    }
-
-    if (frameCount % 180 === 0 && teams.length < 3) {
-      threeCovariates();
-    }
-  }
-
-  if (val === "2") {
-    removeReferees();
-    removeClubs();
-    for (let i = 0; i < plinkos.length; i++) {
-      plinkos[i].show();
-    }
-    if (frameCount % 60 == 0 && teams.length < 7) {
-      onlyPlayers();
-    }
-  }
-
-  if (val === "3") {
-    removePlayers();
-    addClubs();
-    for (let i = 0; i < clubs.length; i++) {
-      clubs[i].show();
-    }
-    if (teams.length < 8) {
-      onlyClubs();
-    }
-  }
-
-  if (val === "4") {
-    removeClubs();
-    addReferees();
-    for (let i = 0; i < referees.length; i++) {
-      referees[i].show();
-    }
-    if (teams.length < 12) {
-      onlyReferees();
-    }
-  }
 }
