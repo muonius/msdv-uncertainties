@@ -74,14 +74,14 @@ function setup() {
   createCanvas(dWidth, dWidth, WEBGL);
 
   radio = createRadio();
-  radio.option("PLR", "Covariates Related to Players, Leagues, and Referees");
-  radio.option("PL", "Covariates Related to Players and Leagues");
-  radio.option("PR", "Covariates Related to Players and Referees");
-  radio.option("P", "Only Covariates Related to Players");
-  radio.option("L", "Only Covariates Related to Leagues");
-  radio.option("R", "Only Covariates Related to Referees");
-  radio.option("D", "Only Covariates Related to Draws");
-  radio.option("N", "No Covariate Related to Players");
+  radio.option("PLR", "Players, Leagues, and Referees");
+  radio.option("PL", "Players and Leagues");
+  radio.option("PR", "Players and Referees");
+  radio.option("P", "Only Players");
+  radio.option("L", "Only Leagues");
+  radio.option("R", "Only Referees");
+  radio.option("D", "Only Draws");
+  radio.option("N", "None");
   radio.style("width", "500px");
   radio.style("transform: translate(900px,-800px)");
   //customize style using CSS
