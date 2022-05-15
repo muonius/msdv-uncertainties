@@ -76,6 +76,7 @@ function setScene(val) {
 
   if (val === "D") {
     addReferees();
+    removeReferees();
     removeLeagues();
     removePlayerBackdrop();
     removeLeagueBackdrop();
@@ -95,7 +96,6 @@ function setScene(val) {
     removePlayerBackdrop();
     removeLeagueBackdrop();
     removeRefereeBackdrop();
-
     addFloat();
     // for (let i = 0; i < floats.length; i++) {
     //   floats[i].show();
