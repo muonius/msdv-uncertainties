@@ -1,4 +1,4 @@
-//Rename Matter.js names
+//*********Rename Matter.js names
 let Engine = Matter.Engine;
 let World = Matter.World;
 let Runner = Matter.Runner;
@@ -13,7 +13,7 @@ let Common = Matter.Common;
 let engine;
 //world is the world inside of an engine
 
-//User Interface Variables
+//*********User Interface Variables
 let plinkoTooltip;
 let selectVal;
 let plinkoLabel;
@@ -22,32 +22,30 @@ let plinkopositions = [];
 let uniquepositions;
 let uniquelabels;
 
-//Draw Backdrops
+//*********Draw Backdrops
 let drawBackground;
 let playerBackdrop;
 let leagueBackdrop;
 let refereeBackdrop;
 
-//Axis
+//*********Axis
 let oddRatio;
-let oddratios = [-2, -1, 0, 1, 2, 3];
-
-//Draw world in World
+let oddratios = [0, 0.5, 1, 1.5, 2, 2.5, 3];
+// let xArray = [-10, 0, 20, -20, 40];
+// let colors = ["orange", "blue", "green", "purple", "grey"];
+//*********Draw world in World
 let world;
 let ground;
 let boundaries = [];
 let dividers = [];
-let plinkos = [];
-let polygons = [];
-let cols = 10;
+let cols = 12;
 let angles = [-0.2, 0.9, 1.5, 2.1, -0.9, -1.7, -2.4];
-let leagues = [];
-let referees = [];
-let numdraw;
-let numdraws = [];
-//Draw team particles
+
+//*********Draw team particles
 let teams = [];
-//Player particles
+
+//*********Draw Plinkos */
+//Player plinkos
 let playerPosition;
 let playerCard;
 let playerHeight;
@@ -56,36 +54,39 @@ let playerScore;
 let playerAge;
 let playerName;
 let playerVictory;
-//League particles
+let plinkos = [];
+//League plinkos
 let leagueCountry;
 let leagueName;
-//Referee particles
+let leagues = [];
+//Referee plinko
 let refCountry;
 let refName;
 let refCard;
-
+let referees = [];
+//Num of draws plinko
+let numdraw;
+let numdraws = [];
+//No covariate plinko invisible
 let float;
 let floats = [];
 
+//*********Draw variables
 //Declare element measurement
 let pRadius = 40;
 let pAngleStart = 0.8;
-
 //Declare measurement variables
-let startX;
 let dWidth = 800;
-
-let posStart = { x: -20, y: 40 };
-
-let xArray = [-10, 0, 20, -20, 40];
-let colors = ["orange", "blue", "green", "purple", "grey"];
-
-//Declare text variables
-let detectors = [];
 
 function setup() {
   createCanvas(dWidth, dWidth, WEBGL);
   randomSeed(50);
+  rectMode(CENTER);
+
+  engine = Engine.create();
+  world = engine.world;
+  Runner.run(engine);
+
   radio = createRadio();
   radio.option("PLR", "Players, Leagues, and Referees");
   radio.option("PL", "Players and Leagues");
@@ -95,18 +96,15 @@ function setup() {
   // radio.option("R", "Only Referees");
   radio.option("D", "Only Draws");
   radio.option("N", "None");
-  radio.style("width", "500px");
+  // radio.style("width", "400px");
   radio.style("transform: translate(900px,-600px)");
   //customize style using CSS
 
   radio.style("display: grid");
   radio.style("font-family:Arial");
   radio.style("font-size:26px");
-  // textSize(36);
-  // radio.selected("2");
-  textAlign(LEFT);
-  // console.log(radio);
 
+  //create text
   plinkoTooltip = createGraphics(500, 500);
   oddRatio = createGraphics(500, 500);
   playerBackdrop = createGraphics(400, 300);
@@ -114,11 +112,7 @@ function setup() {
   refereeBackdrop = createGraphics(320, 120);
   drawBackgroup = createGraphics(100, 100);
 
-  rectMode(CENTER);
-  engine = Engine.create();
-  world = engine.world;
-
-  //create plinkos
+  //initialize plinkos
   addPlayers();
   addLeagues();
   addReferees();
@@ -126,21 +120,22 @@ function setup() {
   //create divider
   for (let i = -cols / 2; i < cols + 1; i++) {
     const spacing = width / cols;
-    let x = i * spacing;
+    let x = i * (spacing + 2);
     let h = 80;
-    let w = 4;
+    let w = 8;
     let y = height / 2 - h;
-    let bBottom = new Boundary(x, y, w, h, 0, "Black");
+    let bBottom = new Boundary(x, y, w, h, 0, "black");
     dividers.push(bBottom);
+    12;
   }
 
   //create outer bound
   let bound = new Boundary(0, height / 2, width, 100, 0, "black");
   boundaries.push(bound);
 
+  //create collision label event
   createLabel();
-  Runner.run(engine);
-  frameRate(120);
+  frameRate(60);
 }
 
 function draw() {
@@ -161,17 +156,22 @@ function draw() {
   drawRefereeBackdrop();
 
   //*****************static odd ratio plane*/
-  oddRatio.background("red");
-  oddRatio.text("0 0.5  1 1.5 2 2.5 3", 240, 300);
-  oddRatio.textSize(65);
+  oddRatio.background("black");
+  for (let i = 0; i < oddratios.length; i++) {
+    let x = map(i, 0, oddratios.length - 1, -20, height / 2 + 60);
+    oddRatio.text(oddratios[i], x, 270);
+  }
+  oddRatio.fill(255);
+  oddRatio.textSize(25);
   oddRatio.textAlign(CENTER);
+
   //display odd ratio plane
   push();
   noStroke();
   translate(0, height / 2 - 50);
-  rotateX(HALF_PI);
+  rotateX(PI / 2);
   texture(oddRatio);
-  plane(500, 500);
+  plane(800, 800);
   pop();
 
   //*****************display bounds
@@ -179,9 +179,10 @@ function draw() {
     boundaries[i].show();
   }
 
-  for (let i = 0; i < dividers.length; i++) {
-    dividers[i].show();
-  }
+  //do not display dividers
+  // for (let i = 0; i < dividers.length; i++) {
+  //   dividers[i].show();
+  // }
 
   for (let i = 0; i < boundaries.length; i++) {
     boundaries[i].show();
@@ -212,10 +213,12 @@ function draw() {
       referees[i].show();
     }
   }
+  //**************Change Scene Based on Radio Selection */
   selectVal = radio.value();
   setScene(selectVal);
-  //draw Tooltip
 
+  //**************Tooltip */
+  //Draw interactive tooltip
   for (let i = 0; i < plinkolabels.length; i++) {
     push();
     translate(-350, -100 + 50 * i, -150);

@@ -6,7 +6,8 @@ function createLabel() {
       if (
         pair.bodyB.label === "particle" &&
         pair.bodyA.label != "boundary" &&
-        pair.bodyA.label != "particle"
+        pair.bodyA.label != "particle" &&
+        pair.bodyA.label != "Circle Body"
       ) {
         pingParticle(pair.bodyA);
       }
@@ -39,5 +40,5 @@ function pingParticle(particle) {
       plinkolabels.splice(i, 1);
       i--;
     }
-  }, 2400);
+  }, 3600);
 }
