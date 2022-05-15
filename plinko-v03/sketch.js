@@ -9,6 +9,9 @@ let plinkopositions = [];
 let uniquepositions;
 let uniquelabels;
 
+let numDraw;
+let numDraws = [];
+let drawBackground;
 //backdrop labels
 let playerBackdrop;
 let leagueBackdrop;
@@ -89,7 +92,7 @@ function setup() {
   radio.option("PR", "Players and Referees");
   radio.option("P", "Only Players");
   radio.option("L", "Only Leagues");
-  radio.option("R", "Only Referees");
+  // radio.option("R", "Only Referees");
   radio.option("D", "Only Draws");
   radio.option("N", "None");
   radio.style("width", "500px");
@@ -109,6 +112,7 @@ function setup() {
   playerBackdrop = createGraphics(400, 300);
   leagueBackdrop = createGraphics(200, 120);
   refereeBackdrop = createGraphics(320, 120);
+  drawBackgroup = createGraphics(100, 100);
 
   rectMode(CENTER);
   engine = Engine.create();
@@ -158,7 +162,7 @@ function draw() {
 
   //*****************static odd ratio plane*/
   oddRatio.background("red");
-  oddRatio.text("-2   -1    0    1   2   3", 240, 300);
+  oddRatio.text("0 0.5  1 1.5 2 2.5 3", 240, 300);
   oddRatio.textSize(65);
   oddRatio.textAlign(CENTER);
   //display odd ratio plane

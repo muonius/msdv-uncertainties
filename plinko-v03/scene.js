@@ -12,7 +12,7 @@ function setScene(val) {
       referees[i].show();
     }
 
-    if (frameCount % 180 === 0 && teams.length < 2) {
+    if (frameCount % 180 === 0 && teams.length < 3) {
       threeCovariates();
     }
   }
@@ -43,7 +43,7 @@ function setScene(val) {
     for (let i = 0; i < referees.length; i++) {
       referees[i].show();
     }
-    if (frameCount % 60 == 0 && teams.length < 6) {
+    if (frameCount % 60 == 0 && teams.length < 9) {
       playerReferees();
     }
   }
@@ -56,7 +56,7 @@ function setScene(val) {
     for (let i = 0; i < plinkos.length; i++) {
       plinkos[i].show();
     }
-    if (teams.length < 8) {
+    if (teams.length < 14) {
       onlyPlayers();
     }
   }
@@ -69,53 +69,51 @@ function setScene(val) {
     for (let i = 0; i < leagues.length; i++) {
       leagues[i].show();
     }
-    if (teams.length < 11) {
+    if (teams.length < 25) {
       onlyLeagues();
     }
   }
 
-  if (val === "R") {
-    removePlayerBackdrop();
-    removeLeagues();
-    removeLeagueBackdrop();
-    addReferees();
-    drawRefereeBackdrop();
-    for (let i = 0; i < referees.length; i++) {
-      referees[i].show();
-    }
-    if (teams.length < 14) {
-      onlyReferees();
-    }
-  }
+  // if (val === "R") {
+  //   removePlayerBackdrop();
+  //   removeLeagues();
+  //   removeLeagueBackdrop();
+  //   addReferees();
+  //   drawRefereeBackdrop();
+  //   for (let i = 0; i < referees.length; i++) {
+  //     referees[i].show();
+  //   }
+  //   if (teams.length < 14) {
+  //     onlyReferees();
+  //   }
+  // }
 
   if (val === "D") {
-    addFloat();
-    for (let i = 0; i < floats.length; i++) {
-      floats[i].show();
-    }
-    removePlayers();
-    removeReferees();
     removeLeagues();
     removePlayerBackdrop();
     removeLeagueBackdrop();
     removeRefereeBackdrop();
-    if (teams.length < 16) {
+    addDraw();
+    for (let i = 0; i < numDraws.length; i++) {
+      numDraws[i].show();
+    }
+    if (teams.length < 26) {
       onlyDraws();
     }
   }
 
   if (val === "N") {
-    removeFloat();
-    // for (let i = 0; i < floats.length; i++) {
-    //   floats[i].show();
-    // }
-    removePlayers();
-    removeReferees();
-    removeLeagues();
+    removeDraw();
     removePlayerBackdrop();
     removeLeagueBackdrop();
     removeRefereeBackdrop();
-    if (teams.length < 17) {
+
+    addFloat();
+    for (let i = 0; i < floats.length; i++) {
+      floats[i].show();
+    }
+
+    if (teams.length < 27) {
       noCovariates();
     }
     // addReferees();

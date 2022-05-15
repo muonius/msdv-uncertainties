@@ -100,7 +100,7 @@ function addPlayers() {
 function addLeagues() {
   //draw league plinkos
   leagueCountry = new Plinko(
-    -20,
+    -40,
     -height / 2 + 420,
     pRadius,
     pRadius,
@@ -111,7 +111,7 @@ function addLeagues() {
   );
   leagues.push(leagueCountry);
   leagueName = new Plinko(
-    70,
+    90,
     -height / 2 + 420,
     pRadius,
     pRadius,
@@ -184,14 +184,38 @@ function removeReferees() {
   }
 }
 
+function addDraw() {
+  //draw league
+  numDraw = new Plinko(
+    50,
+    -height / 2 + 550,
+    100,
+    100,
+    pAngleStart,
+    "black",
+    true,
+    "Number of Draws"
+  );
+  numDraws.push(numDraw);
+}
+
+function removeDraw() {
+  for (let i = 0; i < numDraws.length; i++) {
+    World.remove(world, numDraws[i].body);
+    numDraws.splice(i, 1);
+    i--;
+  }
+}
+
 function addFloat() {
   //draw league plinkos
-  float = new Float(-200, -height / 2 + 400, 400, 0, "#ccccff");
+  float = new Float(-200, -height / 2 + 400, 200, 0, "black");
   floats.push(float);
 }
 
 function removeFloat() {
   for (let i = 0; i < floats.length; i++) {
+    World.remove(world, floats[i].body);
     floats.splice(i, 1);
     i--;
   }
