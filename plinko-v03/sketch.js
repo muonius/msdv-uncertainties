@@ -77,6 +77,18 @@ let pRadius = 40;
 let pAngleStart = 0.8;
 //Declare measurement variables
 let dWidth = 800;
+//Declare color variables
+const colorParticle = {
+  linear: "cornflowerblue",
+  logistic: "orange",
+  poisson: "pink",
+  misc: "purple",
+};
+const colorPlinko = {
+  players: "red",
+  leagues: "lavendar",
+  referees: "yellow",
+};
 
 function setup() {
   createCanvas(dWidth, dWidth, WEBGL);
@@ -140,6 +152,11 @@ function setup() {
 
 function draw() {
   orbitControl();
+  // ambientLight(0, 0, 255);
+
+  // pointLight(255, 255, 0, -200, 0, 200);
+  // pointLight(0, 0, 255, 200, 200, 0);
+  // directionalLight();
   lights();
   background(255);
 
@@ -168,8 +185,10 @@ function draw() {
   //display odd ratio plane
   push();
   noStroke();
+
   translate(0, height / 2 - 50);
   rotateX(PI / 2);
+  // ambientMaterial(255, 0, 0);
   texture(oddRatio);
   plane(800, 800);
   pop();
@@ -223,7 +242,7 @@ function draw() {
     push();
     translate(-350, -100 + 50 * i, -150);
     // plinkoTooltip.noStroke();
-    ambientMaterial(255);
+    // ambientMaterial(255, 0, 255);
     plinkoTooltip.background(255);
     plinkoTooltip.text(`${plinkolabels[i]}`, 100, 50);
     plinkoTooltip.textSize(30);
