@@ -166,7 +166,7 @@ function onlyPlayers() {
   );
   teams.push(teamB);
   let teamC = new Particle(
-    40,
+    10,
     -height / 2 + 150,
     10,
     0.1,
@@ -176,7 +176,7 @@ function onlyPlayers() {
   );
   teams.push(teamC);
   let teamD = new Particle(
-    20,
+    10,
     -height / 2 + 100,
     10,
     0.1,
@@ -186,7 +186,7 @@ function onlyPlayers() {
   );
   teams.push(teamD);
   let teamK = new Particle(
-    70,
+    40,
     -height / 2 + 150,
     10,
     0.1,
@@ -197,7 +197,7 @@ function onlyPlayers() {
   teams.push(teamK);
 
   let teamE = new Particle(
-    20,
+    0,
     -height / 2 + 200,
     10,
     0.1,
@@ -207,7 +207,7 @@ function onlyPlayers() {
   );
   teams.push(teamE);
   let teamF = new Particle(
-    40,
+    20,
     -height / 2 + 150,
     10,
     0.1,
@@ -265,7 +265,7 @@ function threeCovariates() {
     10,
     0.5,
     1,
-    colorParticle.logistic,
+    colorParticle.linear,
     0.1
   );
   teams.push(teamH);
@@ -275,7 +275,7 @@ function threeCovariates() {
     10,
     0.5,
     2,
-    colorParticle.logistic,
+    colorParticle.linear,
     0.01
   );
   teams.push(teamI);
@@ -285,7 +285,7 @@ function threeCovariates() {
     10,
     0.5,
     2,
-    colorParticle.logistic,
+    colorParticle.linear,
     0.1
   );
   teams.push(teamJ);
