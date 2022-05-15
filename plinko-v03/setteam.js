@@ -52,7 +52,7 @@ function playerReferees() {
   teams.push(teamF);
   let teamG = new Particle(20, -height / 2 + 100, 10, 0.1, 0.9, "orange", 0.05);
   teams.push(teamG);
-  let teamH = new Particle(-20, -height / 2 + 50, 10, 0.1, 0.9, "orange", 0.01);
+  let teamH = new Particle(-10, -height / 2 + 50, 10, 0.1, 0.9, "orange", 0.01);
   teams.push(teamH);
 }
 

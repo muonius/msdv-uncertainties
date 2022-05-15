@@ -120,9 +120,9 @@ function setup() {
   //create divider
   for (let i = -cols / 2; i < cols + 1; i++) {
     const spacing = width / cols;
-    let x = i * (spacing + 2);
+    let x = i * spacing;
     let h = 80;
-    let w = 8;
+    let w = 4;
     let y = height / 2 - h;
     let bBottom = new Boundary(x, y, w, h, 0, "black");
     dividers.push(bBottom);
