@@ -94,8 +94,8 @@ function setScene(val) {
     removeLeagueBackdrop();
     removeRefereeBackdrop();
     addDraw();
-    for (let i = 0; i < numDraws.length; i++) {
-      numDraws[i].show();
+    for (let i = 0; i < numdraws.length; i++) {
+      numdraws[i].show();
     }
     if (teams.length < 26) {
       onlyDraws();
@@ -109,9 +109,9 @@ function setScene(val) {
     removeRefereeBackdrop();
 
     addFloat();
-    for (let i = 0; i < floats.length; i++) {
-      floats[i].show();
-    }
+    // for (let i = 0; i < floats.length; i++) {
+    //   floats[i].show();
+    // }
 
     if (teams.length < 27) {
       noCovariates();

@@ -7,7 +7,7 @@ function onlyLeagues() {
 
 function noCovariates() {
   let teamD = new Particle(
-    -20,
+    -150,
     -height / 2 + 150,
     10,
     0.1,
@@ -16,9 +16,17 @@ function noCovariates() {
     0.01
   );
   teams.push(teamD);
-  let teamE = new Particle(30, -height / 2 + 200, 10, 0.1, 0.9, "orange", 0.05);
+  let teamE = new Particle(
+    -120,
+    -height / 2 + 200,
+    10,
+    0.1,
+    0.9,
+    "orange",
+    0.05
+  );
   teams.push(teamE);
-  let teamF = new Particle(50, -height / 2 + 250, 10, 0.1, 0.9, "pink", 0.05);
+  let teamF = new Particle(-80, -height / 2 + 250, 10, 0.1, 0.9, "pink", 0.05);
   teams.push(teamF);
 }
 

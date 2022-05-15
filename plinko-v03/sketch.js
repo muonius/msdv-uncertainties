@@ -1,24 +1,3 @@
-//User Interface Radio Button
-let radioSelection;
-let oddRatio;
-let oddratios = [-2, -1, 0, 1, 2, 3];
-let val;
-let plinkoLabel;
-let plinkolabels = [];
-let plinkopositions = [];
-let uniquepositions;
-let uniquelabels;
-
-let numDraw;
-let numDraws = [];
-let drawBackground;
-//backdrop labels
-let playerBackdrop;
-let leagueBackdrop;
-let refereeBackdrop;
-
-let collisionCounter = 0;
-
 //Rename Matter.js names
 let Engine = Matter.Engine;
 let World = Matter.World;
@@ -34,6 +13,26 @@ let Common = Matter.Common;
 let engine;
 //world is the world inside of an engine
 
+//User Interface Variables
+let plinkoTooltip;
+let selectVal;
+let plinkoLabel;
+let plinkolabels = [];
+let plinkopositions = [];
+let uniquepositions;
+let uniquelabels;
+
+//Draw Backdrops
+let drawBackground;
+let playerBackdrop;
+let leagueBackdrop;
+let refereeBackdrop;
+
+//Axis
+let oddRatio;
+let oddratios = [-2, -1, 0, 1, 2, 3];
+
+//Draw world in World
 let world;
 let ground;
 let boundaries = [];
@@ -41,13 +40,14 @@ let dividers = [];
 let plinkos = [];
 let polygons = [];
 let cols = 10;
-let draws = [];
 let angles = [-0.2, 0.9, 1.5, 2.1, -0.9, -1.7, -2.4];
 let leagues = [];
 let referees = [];
-//analysts
+let numdraw;
+let numdraws = [];
+//Draw team particles
 let teams = [];
-//Declare element variables
+//Player particles
 let playerPosition;
 let playerCard;
 let playerHeight;
@@ -56,10 +56,10 @@ let playerScore;
 let playerAge;
 let playerName;
 let playerVictory;
-
+//League particles
 let leagueCountry;
 let leagueName;
-
+//Referee particles
 let refCountry;
 let refName;
 let refCard;
@@ -85,7 +85,7 @@ let detectors = [];
 
 function setup() {
   createCanvas(dWidth, dWidth, WEBGL);
-
+  randomSeed(50);
   radio = createRadio();
   radio.option("PLR", "Players, Leagues, and Referees");
   radio.option("PL", "Players and Leagues");
@@ -107,7 +107,7 @@ function setup() {
   textAlign(LEFT);
   // console.log(radio);
 
-  radioSelection = createGraphics(500, 500);
+  plinkoTooltip = createGraphics(500, 500);
   oddRatio = createGraphics(500, 500);
   playerBackdrop = createGraphics(400, 300);
   leagueBackdrop = createGraphics(200, 120);
@@ -199,7 +199,7 @@ function draw() {
   }
 
   //*****************initial display all plinkos
-  if (!val) {
+  if (!selectVal) {
     for (let i = 0; i < plinkos.length; i++) {
       plinkos[i].show();
     }
@@ -212,20 +212,20 @@ function draw() {
       referees[i].show();
     }
   }
-  val = radio.value();
-  setScene(val);
+  selectVal = radio.value();
+  setScene(selectVal);
   //draw Tooltip
 
   for (let i = 0; i < plinkolabels.length; i++) {
     push();
     translate(-350, -100 + 50 * i, -150);
-    // radioSelection.noStroke();
+    // plinkoTooltip.noStroke();
     ambientMaterial(255);
-    radioSelection.background(255);
-    radioSelection.text(`${plinkolabels[i]}`, 100, 50);
-    radioSelection.textSize(30);
-    radioSelection.textAlign(LEFT);
-    texture(radioSelection);
+    plinkoTooltip.background(255);
+    plinkoTooltip.text(`${plinkolabels[i]}`, 100, 50);
+    plinkoTooltip.textSize(30);
+    plinkoTooltip.textAlign(LEFT);
+    texture(plinkoTooltip);
     noStroke();
     plane(300, 300);
     pop();
