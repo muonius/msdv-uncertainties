@@ -1,16 +1,14 @@
-function Plinko(x, y, w, h, a, c, display, label) {
+function Float(x, y, r, a, c) {
   const options = {
     friction: 0.5,
     restitution: 0.6,
     isStatic: true,
     angle: a,
   };
-  this.body = Bodies.rectangle(x, y, w, h, options);
+  this.body = Bodies.circle(x, y, r, options);
   // this.body.angle = PI / 4;
 
-  this.w = w;
-  this.h = h;
-  this.body.label = label;
+  this.r = r;
   World.add(world, this.body);
 
   this.show = function () {
@@ -23,10 +21,11 @@ function Plinko(x, y, w, h, a, c, display, label) {
     rotate(angle);
     strokeWeight(4);
     noStroke();
-    if (display === true) fill(c);
-    if (display === false) noFill();
-    box(this.w, this.h);
+    fill(c);
+    sphere(this.r);
     // rect(0, 0, this.w, this.h);
     pop();
+
+    // console.log(this);
   };
 }

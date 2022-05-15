@@ -19,6 +19,7 @@ function setScene(val) {
 
   if (val === "PL") {
     removeReferees();
+    removeRefereeBackdrop();
     for (let i = 0; i < plinkos.length; i++) {
       plinkos[i].show();
     }
@@ -32,7 +33,10 @@ function setScene(val) {
 
   if (val === "PR") {
     removeLeagues();
+    removeLeagueBackdrop();
+    drawRefereeBackdrop();
     addReferees();
+
     for (let i = 0; i < plinkos.length; i++) {
       plinkos[i].show();
     }
@@ -46,7 +50,9 @@ function setScene(val) {
 
   if (val === "P") {
     removeLeagues();
+    removeLeagueBackdrop();
     removeReferees();
+    removeRefereeBackdrop();
     for (let i = 0; i < plinkos.length; i++) {
       plinkos[i].show();
     }
@@ -57,7 +63,9 @@ function setScene(val) {
 
   if (val === "L") {
     removePlayers();
+    removePlayerBackdrop();
     addLeagues();
+    removeRefereeBackdrop();
     for (let i = 0; i < leagues.length; i++) {
       leagues[i].show();
     }
@@ -67,8 +75,11 @@ function setScene(val) {
   }
 
   if (val === "R") {
+    removePlayerBackdrop();
     removeLeagues();
+    removeLeagueBackdrop();
     addReferees();
+    drawRefereeBackdrop();
     for (let i = 0; i < referees.length; i++) {
       referees[i].show();
     }
@@ -78,22 +89,40 @@ function setScene(val) {
   }
 
   if (val === "D") {
+    addFloat();
+    for (let i = 0; i < floats.length; i++) {
+      floats[i].show();
+    }
     removePlayers();
     removeReferees();
     removeLeagues();
-
+    removePlayerBackdrop();
+    removeLeagueBackdrop();
+    removeRefereeBackdrop();
     if (teams.length < 16) {
       onlyDraws();
     }
   }
 
   if (val === "N") {
+    removeFloat();
+    // for (let i = 0; i < floats.length; i++) {
+    //   floats[i].show();
+    // }
     removePlayers();
     removeReferees();
     removeLeagues();
-
+    removePlayerBackdrop();
+    removeLeagueBackdrop();
+    removeRefereeBackdrop();
     if (teams.length < 17) {
       noCovariates();
     }
+    // addReferees();
+    // addPlayers();
+    // addLeagues();
+    // drawRefereeBackdrop();
+    // drawPlayerBackdrop();
+    // drawLeagueBackdrop();
   }
 }

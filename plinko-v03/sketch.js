@@ -3,15 +3,18 @@ let radioSelection;
 let oddRatio;
 let oddratios = [-2, -1, 0, 1, 2, 3];
 let val;
-const COLOR = {
-  BACKGROUND: "#212529",
-  OUTER: "#495057",
-  INNER: "#15aabf",
-  BUMPER: "#fab005",
-  BUMPER_LIT: "#fff3bf",
-  PADDLE: "#e64980",
-  PINBALL: "#dee2e6",
-};
+let plinkoLabel;
+let plinkolabels = [];
+let plinkopositions = [];
+let uniquepositions;
+let uniquelabels;
+
+//backdrop labels
+let playerBackdrop;
+let leagueBackdrop;
+let refereeBackdrop;
+
+let collisionCounter = 0;
 
 //Rename Matter.js names
 let Engine = Matter.Engine;
@@ -41,8 +44,6 @@ let leagues = [];
 let referees = [];
 //analysts
 let teams = [];
-let counter = 0;
-
 //Declare element variables
 let playerPosition;
 let playerCard;
@@ -92,7 +93,7 @@ function setup() {
   radio.option("D", "Only Draws");
   radio.option("N", "None");
   radio.style("width", "500px");
-  radio.style("transform: translate(900px,-800px)");
+  radio.style("transform: translate(900px,-600px)");
   //customize style using CSS
 
   radio.style("display: grid");
@@ -105,6 +106,9 @@ function setup() {
 
   radioSelection = createGraphics(500, 500);
   oddRatio = createGraphics(500, 500);
+  playerBackdrop = createGraphics(400, 300);
+  leagueBackdrop = createGraphics(200, 120);
+  refereeBackdrop = createGraphics(320, 120);
 
   rectMode(CENTER);
   engine = Engine.create();
@@ -131,7 +135,6 @@ function setup() {
   boundaries.push(bound);
 
   createLabel();
-
   Runner.run(engine);
   frameRate(120);
 }
@@ -139,20 +142,27 @@ function setup() {
 function draw() {
   orbitControl();
   lights();
-
   background(255);
 
-  //*****************ODD RATIO PLANE */
-  //draw oddRatio axis
+  //*****************static backdrop
+  push();
+  translate(0, 0, -150);
+  fill(255);
+  noStroke();
+  plane(1000, 1000);
+  pop();
+
+  drawPlayerBackdrop();
+  drawLeagueBackdrop();
+  drawRefereeBackdrop();
+
+  //*****************static odd ratio plane*/
   oddRatio.background("red");
-  oddRatio.text("-2   -1   0    1   2   3", 240, 300);
+  oddRatio.text("-2   -1    0    1   2   3", 240, 300);
   oddRatio.textSize(65);
   oddRatio.textAlign(CENTER);
-
-  //draw bottom platform
+  //display odd ratio plane
   push();
-  // ambientMaterial(255);
-  // fill(50);
   noStroke();
   translate(0, height / 2 - 50);
   rotateX(HALF_PI);
@@ -160,39 +170,7 @@ function draw() {
   plane(500, 500);
   pop();
 
-  //player background
-  push();
-  // ambientMaterial(255);
-  fill("#8a3324");
-  noStroke();
-  translate(0, -150, -100);
-  rotateZ(0.1);
-  plane(400, 300);
-  pop();
-
-  //League background
-  push();
-  // ambientMaterial(255);
-  fill("#e0e0ff");
-  noStroke();
-  translate(0, 50, -50);
-  // rotateX(HALF_PI);
-  plane(250, 100);
-  pop();
-
-  //referee background
-  push();
-  // ambientMaterial(255);
-  fill("#fbda98");
-  noStroke();
-  translate(20, 150, -75);
-  rotateZ(-0.1);
-  plane(320, 150);
-  pop();
-
-  // //draw all elements
-  // // World.add(world, float.body);
-
+  //*****************display bounds
   for (let i = 0; i < boundaries.length; i++) {
     boundaries[i].show();
   }
@@ -205,6 +183,7 @@ function draw() {
     boundaries[i].show();
   }
 
+  //*****************display particles
   for (let i = 0; i < teams.length; i++) {
     teams[i].show();
     if (teams[i].isOffScreen()) {
@@ -215,6 +194,7 @@ function draw() {
     }
   }
 
+  //*****************initial display all plinkos
   if (!val) {
     for (let i = 0; i < plinkos.length; i++) {
       plinkos[i].show();
@@ -231,23 +211,19 @@ function draw() {
   val = radio.value();
   setScene(val);
   //draw Tooltip
-  push();
-  translate(20, 150, -150);
 
-  if (val) {
-    radioSelection.background("white");
-    radioSelection.text(`item cost is ${val}`, width / 2, height / 2);
-    radioSelection.textSize(20);
-    radioSelection.textAlign(CENTER);
+  for (let i = 0; i < plinkolabels.length; i++) {
+    push();
+    translate(-350, -100 + 50 * i, -150);
+    // radioSelection.noStroke();
+    ambientMaterial(255);
+    radioSelection.background(255);
+    radioSelection.text(`${plinkolabels[i]}`, 100, 50);
+    radioSelection.textSize(30);
+    radioSelection.textAlign(LEFT);
     texture(radioSelection);
+    noStroke();
+    plane(300, 300);
+    pop();
   }
-  plane(500, 500);
-  pop();
-}
-
-// **************HELPER FUNCTIONS
-
-function keyPressed() {
-  World.remove(world, Leagues[0].body);
-  Leagues.splice(0, 1);
 }

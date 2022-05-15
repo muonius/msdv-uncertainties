@@ -2,89 +2,97 @@ function addPlayers() {
   //draw Player plinkos
   playerPosition = new Plinko(
     -20,
-    -height / 2 + 200,
+    -height / 2 + 120,
     pRadius,
     pRadius,
     pAngleStart,
     "brown",
-    true
+    true,
+    "Player's Position"
   );
   plinkos.push(playerPosition);
 
   playerCard = new Plinko(
     70,
-    -height / 2 + 200,
+    -height / 2 + 120,
     pRadius,
     pRadius,
     pAngleStart,
-    "green",
-    true
+    "brown",
+    true,
+    "Player's Card Received"
   );
   plinkos.push(playerCard);
 
   playerHeight = new Plinko(
     -70,
-    -height / 2 + 280,
+    -height / 2 + 200,
     pRadius,
     pRadius,
     pAngleStart,
     "brown",
-    true
+    true,
+    "Player's Height"
   );
   plinkos.push(playerHeight);
 
   playerWeight = new Plinko(
     20,
-    -height / 2 + 280,
+    -height / 2 + 200,
     pRadius,
     pRadius,
     pAngleStart,
     "brown",
-    true
+    true,
+    "Player's Weight"
   );
   plinkos.push(playerWeight);
 
   playerScore = new Plinko(
     120,
-    -height / 2 + 280,
+    -height / 2 + 200,
     pRadius,
     pRadius,
     pAngleStart,
     "brown",
-    true
+    true,
+    "Player's Score"
   );
   plinkos.push(playerScore);
 
   playerAge = new Plinko(
     -70,
-    -height / 2 + 360,
+    -height / 2 + 280,
     pRadius,
     pRadius,
     pAngleStart,
     "brown",
-    true
+    true,
+    "Player's Age"
   );
   plinkos.push(playerAge);
 
   playerName = new Plinko(
     20,
-    -height / 2 + 360,
+    -height / 2 + 280,
     pRadius,
     pRadius,
     pAngleStart,
     "brown",
-    true
+    true,
+    "Player Self"
   );
   plinkos.push(playerName);
 
   playerVictory = new Plinko(
     120,
-    -height / 2 + 360,
+    -height / 2 + 280,
     pRadius,
     pRadius,
     pAngleStart,
     "brown",
-    true
+    true,
+    "Player's Victory"
   );
   plinkos.push(playerVictory);
 }
@@ -92,23 +100,25 @@ function addPlayers() {
 function addLeagues() {
   //draw league plinkos
   leagueCountry = new Plinko(
-    posStart.x,
-    posStart.y,
+    -20,
+    -height / 2 + 420,
     pRadius,
     pRadius,
     pAngleStart,
     "#ccccff",
-    true
+    true,
+    "League Country"
   );
   leagues.push(leagueCountry);
   leagueName = new Plinko(
     70,
-    -height / 2 + 440,
+    -height / 2 + 420,
     pRadius,
     pRadius,
     pAngleStart,
     "#ccccff",
-    true
+    true,
+    "League Self"
   );
   leagues.push(leagueName);
 }
@@ -117,32 +127,35 @@ function addReferees() {
   //draw referees plinkos
   refCountry = new Plinko(
     -70,
-    -height / 2 + 520,
+    -height / 2 + 550,
     pRadius,
     pRadius,
     pAngleStart,
     "#ffcc66",
-    true
+    true,
+    "Referee's Country"
   );
   referees.push(refCountry);
   refName = new Plinko(
     20,
-    -height / 2 + 520,
+    -height / 2 + 550,
     pRadius,
     pRadius,
     pAngleStart,
     "#ffcc66",
-    true
+    true,
+    "Referee Self"
   );
   referees.push(refName);
   refCard = new Plinko(
     120,
-    -height / 2 + 520,
+    -height / 2 + 550,
     pRadius,
     pRadius,
     pAngleStart,
     "#ffcc66",
-    true
+    true,
+    "Referee Card Given"
   );
   referees.push(refCard);
 }
@@ -167,6 +180,19 @@ function removeReferees() {
   for (let i = 0; i < referees.length; i++) {
     World.remove(world, referees[i].body);
     referees.splice(i, 1);
+    i--;
+  }
+}
+
+function addFloat() {
+  //draw league plinkos
+  float = new Float(-200, -height / 2 + 400, 400, 0, "#ccccff");
+  floats.push(float);
+}
+
+function removeFloat() {
+  for (let i = 0; i < floats.length; i++) {
+    floats.splice(i, 1);
     i--;
   }
 }
