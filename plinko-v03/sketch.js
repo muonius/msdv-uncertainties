@@ -108,6 +108,7 @@ function setup() {
   // radio.option("R", "Only Referees");
   radio.option("D", "Only Draws");
   radio.option("N", "None");
+  radio.option("F", "Final State");
   // radio.style("width", "400px");
   radio.style("transform: translate(900px,-600px)");
   //customize style using CSS
@@ -142,7 +143,7 @@ function setup() {
   }
 
   //create outer bound
-  let bound = new Boundary(0, height / 2, width, 100, 0, "black");
+  let bound = new Boundary(0, height / 2 - 50, width, 50, 0, "black");
   boundaries.push(bound);
 
   //create collision label event

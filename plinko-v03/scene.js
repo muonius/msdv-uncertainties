@@ -74,21 +74,8 @@ function setScene(val) {
     }
   }
 
-  // if (val === "R") {
-  //   removePlayerBackdrop();
-  //   removeLeagues();
-  //   removeLeagueBackdrop();
-  //   addReferees();
-  //   drawRefereeBackdrop();
-  //   for (let i = 0; i < referees.length; i++) {
-  //     referees[i].show();
-  //   }
-  //   if (teams.length < 14) {
-  //     onlyReferees();
-  //   }
-  // }
-
   if (val === "D") {
+    addReferees();
     removeLeagues();
     removePlayerBackdrop();
     removeLeagueBackdrop();
@@ -112,15 +99,30 @@ function setScene(val) {
     // for (let i = 0; i < floats.length; i++) {
     //   floats[i].show();
     // }
-
     if (teams.length < 27) {
       noCovariates();
     }
-    // addReferees();
-    // addPlayers();
-    // addLeagues();
-    // drawRefereeBackdrop();
-    // drawPlayerBackdrop();
-    // drawLeagueBackdrop();
+  }
+
+  if (val === "F") {
+    addDraw();
+    addReferees();
+    addPlayers();
+    drawPlayerBackdrop();
+    drawLeagueBackdrop();
+    drawRefereeBackdrop();
+    addDraw();
+    for (let i = 0; i < plinkos.length; i++) {
+      plinkos[i].show();
+    }
+    for (let i = 0; i < leagues.length; i++) {
+      leagues[i].show();
+    }
+    for (let i = 0; i < referees.length; i++) {
+      referees[i].show();
+    }
+    for (let i = 0; i < numdraws.length; i++) {
+      numdraws[i].show();
+    }
   }
 }

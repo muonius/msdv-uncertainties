@@ -187,10 +187,10 @@ function removeReferees() {
 function addDraw() {
   //draw league
   numdraw = new Plinko(
-    50,
-    -height / 2 + 550,
-    100,
-    100,
+    40,
+    -height / 2 + 570,
+    80,
+    80,
     pAngleStart,
     "black",
     true,
