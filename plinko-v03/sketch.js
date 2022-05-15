@@ -79,15 +79,15 @@ let pAngleStart = 0.8;
 let dWidth = 800;
 //Declare color variables
 const colorParticle = {
-  linear: "cornflowerblue",
-  logistic: "orange",
-  poisson: "pink",
-  misc: "purple",
+  linear: "#6495ED",
+  logistic: "#EE8C2C",
+  poisson: "#ccccff",
+  misc: "#ea487e",
 };
 const colorPlinko = {
-  players: "red",
-  leagues: "lavendar",
-  referees: "yellow",
+  players: "#800020",
+  leagues: "#b0c4de",
+  referees: "#FAC564",
 };
 
 function setup() {
@@ -120,7 +120,7 @@ function setup() {
   plinkoTooltip = createGraphics(500, 500);
   oddRatio = createGraphics(500, 500);
   playerBackdrop = createGraphics(400, 300);
-  leagueBackdrop = createGraphics(200, 120);
+  leagueBackdrop = createGraphics(240, 120);
   refereeBackdrop = createGraphics(320, 120);
   drawBackgroup = createGraphics(100, 100);
 

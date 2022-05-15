@@ -6,7 +6,7 @@ function addPlayers() {
     pRadius,
     pRadius,
     pAngleStart,
-    "brown",
+    colorPlinko.players,
     true,
     "Player's Position"
   );
@@ -18,7 +18,7 @@ function addPlayers() {
     pRadius,
     pRadius,
     pAngleStart,
-    "brown",
+    colorPlinko.players,
     true,
     "Player's Card Received"
   );
@@ -30,7 +30,7 @@ function addPlayers() {
     pRadius,
     pRadius,
     pAngleStart,
-    "brown",
+    colorPlinko.players,
     true,
     "Player's Height"
   );
@@ -42,7 +42,7 @@ function addPlayers() {
     pRadius,
     pRadius,
     pAngleStart,
-    "brown",
+    colorPlinko.players,
     true,
     "Player's Weight"
   );
@@ -54,7 +54,7 @@ function addPlayers() {
     pRadius,
     pRadius,
     pAngleStart,
-    "brown",
+    colorPlinko.players,
     true,
     "Player's Score"
   );
@@ -66,7 +66,7 @@ function addPlayers() {
     pRadius,
     pRadius,
     pAngleStart,
-    "brown",
+    colorPlinko.players,
     true,
     "Player's Age"
   );
@@ -78,7 +78,7 @@ function addPlayers() {
     pRadius,
     pRadius,
     pAngleStart,
-    "brown",
+    colorPlinko.players,
     true,
     "Player Self"
   );
@@ -90,7 +90,7 @@ function addPlayers() {
     pRadius,
     pRadius,
     pAngleStart,
-    "brown",
+    colorPlinko.players,
     true,
     "Player's Victory"
   );
@@ -105,7 +105,7 @@ function addLeagues() {
     pRadius,
     pRadius,
     pAngleStart,
-    "#ccccff",
+    colorPlinko.leagues,
     true,
     "League Country"
   );
@@ -116,7 +116,7 @@ function addLeagues() {
     pRadius,
     pRadius,
     pAngleStart,
-    "#ccccff",
+    colorPlinko.leagues,
     true,
     "League Self"
   );
@@ -131,7 +131,7 @@ function addReferees() {
     pRadius,
     pRadius,
     pAngleStart,
-    "#ffcc66",
+    colorPlinko.referees,
     true,
     "Referee's Card Given"
   );
@@ -142,7 +142,7 @@ function addReferees() {
     pRadius,
     pRadius,
     pAngleStart,
-    "#ffcc66",
+    colorPlinko.referees,
     true,
     "Referee Self"
   );
@@ -153,7 +153,7 @@ function addReferees() {
     pRadius,
     pRadius,
     pAngleStart,
-    "#ffcc66",
+    colorPlinko.referees,
     true,
     "Referee's Country"
   );
