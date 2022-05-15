@@ -184,21 +184,6 @@ function removeReferees() {
   }
 }
 
-function addDraw() {
-  //draw league
-  numdraw = new Plinko(
-    40,
-    -height / 2 + 570,
-    80,
-    80,
-    pAngleStart,
-    "black",
-    true,
-    "Number of Draws"
-  );
-  numdraws.push(numdraw);
-}
-
 function removeDraw() {
   for (let i = 0; i < numdraws.length; i++) {
     World.remove(world, numdraws[i].body);
@@ -219,4 +204,73 @@ function removeFloat() {
     floats.splice(i, 1);
     i--;
   }
+}
+
+// function addDraw() {
+//   //draw league
+//   numdraw = new Plinko(
+//     40,
+//     -height / 2 + 570,
+//     80,
+//     80,
+//     pAngleStart,
+//     "black",
+//     true,
+//     "Number of Draws"
+//   );
+//   numdraws.push(numdraw);
+// }
+
+function addDraw() {
+  //draw league
+  numdraw = new Plinko(
+    40,
+    -height / 2 + 570,
+    80,
+    80,
+    pAngleStart,
+    "black",
+    true,
+    "Number of Draws"
+  );
+  numdraws.push(numdraw);
+}
+
+function addNumDraws(x, y, w, h, a, c, display, label) {
+  const options = {
+    friction: 0.5,
+    restitution: 0.6,
+    isStatic: true,
+    angle: a,
+  };
+  this.body = Bodies.rectangle(x, y, w, h, options);
+  // this.body.angle = PI / 4;
+
+  this.w = w;
+  this.h = h;
+  this.body.label = label;
+  World.add(world, this.body);
+
+  this.show = function () {
+    let pos = this.body.position;
+    let angle = this.body.angle;
+
+    push();
+    translate(pos.x, pos.y, 0);
+    rectMode(CENTER);
+    rotate(angle);
+    strokeWeight(4);
+    noStroke();
+    if (display === true) fill(c);
+    if (display === false) noFill();
+    drawBackground.background(0);
+    drawBackground.fill(255);
+    drawBackground.text(`Draws`, 100, 50);
+    drawBackground.textSize(30);
+    drawBackground.textAlign(CENTER);
+    texture(drawBackground);
+    box(this.w, this.h);
+    // rect(0, 0, this.w, this.h);
+    pop();
+  };
 }

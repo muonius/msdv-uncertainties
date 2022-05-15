@@ -97,7 +97,6 @@ function setup() {
 
   engine = Engine.create();
   world = engine.world;
-  Runner.run(engine);
 
   radio = createRadio();
   radio.option("PLR", "Players, Leagues, and Referees");
@@ -118,7 +117,7 @@ function setup() {
   radio.style("font-size:26px");
 
   //create text
-  plinkoTooltip = createGraphics(500, 500);
+  plinkoTooltip = createGraphics(800, 800);
   oddRatio = createGraphics(500, 500);
   playerBackdrop = createGraphics(400, 300);
   leagueBackdrop = createGraphics(240, 120);
@@ -148,12 +147,18 @@ function setup() {
 
   //create collision label event
   createLabel();
+
+  Runner.run(engine);
+
   frameRate(60);
 }
 
 function draw() {
   orbitControl();
-  // ambientLight(0, 0, 255);
+  // rotateY(-0.1);
+  // rotateX(0.01);
+  // rotateZ(-0.3);
+  // ambientLight(255, 255, 255);
 
   // pointLight(255, 255, 0, -200, 0, 200);
   // pointLight(0, 0, 255, 200, 200, 0);
@@ -166,7 +171,7 @@ function draw() {
   translate(0, 0, -150);
   fill(255);
   noStroke();
-  plane(1000, 1000);
+  plane(1000, 900);
   pop();
 
   drawPlayerBackdrop();
@@ -180,7 +185,7 @@ function draw() {
     oddRatio.text(oddratios[i], x, 270);
   }
   oddRatio.fill(255);
-  oddRatio.textSize(25);
+  oddRatio.textSize(20);
   oddRatio.textAlign(CENTER);
 
   //display odd ratio plane
@@ -246,7 +251,7 @@ function draw() {
     // ambientMaterial(255, 0, 255);
     plinkoTooltip.background(255);
     plinkoTooltip.text(`${plinkolabels[i]}`, 100, 50);
-    plinkoTooltip.textSize(30);
+    plinkoTooltip.textSize(60);
     plinkoTooltip.textAlign(LEFT);
     texture(plinkoTooltip);
     noStroke();

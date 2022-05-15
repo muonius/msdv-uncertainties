@@ -91,6 +91,7 @@ function setScene(val) {
 
   if (val === "N") {
     removeDraw();
+    removeReferees();
     removePlayerBackdrop();
     removeLeagueBackdrop();
     removeRefereeBackdrop();
@@ -108,6 +109,7 @@ function setScene(val) {
     addDraw();
     addReferees();
     addPlayers();
+    addLeagues();
     drawPlayerBackdrop();
     drawLeagueBackdrop();
     drawRefereeBackdrop();

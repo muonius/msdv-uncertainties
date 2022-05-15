@@ -306,7 +306,7 @@ function onlyLeagues() {
 
 function onlyDraws() {
   let teamD = new Particle(
-    50,
+    30,
     -height / 2 + 350,
     10,
     0.1,
