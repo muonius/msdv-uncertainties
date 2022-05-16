@@ -136,7 +136,7 @@ function addReferees() {
     "Referee's Card Given"
   );
   referees.push(refCard);
-  refCSelf = new Plinko(
+  refSelf = new Plinko(
     20,
     -height / 2 + 550,
     pRadius,
@@ -264,8 +264,8 @@ function addNumDraws(x, y, w, h, a, c, display, label) {
     if (display === true) fill(c);
     if (display === false) noFill();
     drawBackdrop.background(c);
-    drawBackdrop.text(`Num of`, 50, 35);
-    drawBackdrop.text(`Draws`, 50, 55);
+    drawBackdrop.text(`Num of`, 50, 45);
+    drawBackdrop.text(`Draws`, 50, 70);
     drawBackdrop.fill(255);
     drawBackdrop.textSize(20);
     drawBackdrop.textAlign(CENTER);
