@@ -23,7 +23,7 @@ let uniquepositions;
 let uniquelabels;
 
 //*********Draw Backdrops
-let drawBackground;
+let drawBackdrop;
 let playerBackdrop;
 let leagueBackdrop;
 let refereeBackdrop;
@@ -31,8 +31,7 @@ let refereeBackdrop;
 //*********Axis
 let oddRatio;
 let oddratios = [0, 0.5, 1, 1.5, 2, 2.5, 3];
-// let xArray = [-10, 0, 20, -20, 40];
-// let colors = ["orange", "blue", "green", "purple", "grey"];
+
 //*********Draw world in World
 let world;
 let ground;
@@ -52,16 +51,16 @@ let playerHeight;
 let playerWeight;
 let playerScore;
 let playerAge;
-let playerName;
+let playerSelf;
 let playerVictory;
 let plinkos = [];
 //League plinkos
 let leagueCountry;
-let leagueName;
+let leagueSelf;
 let leagues = [];
 //Referee plinko
 let refCountry;
-let refName;
+let refSelf;
 let refCard;
 let referees = [];
 //Num of draws plinko
@@ -122,7 +121,7 @@ function setup() {
   playerBackdrop = createGraphics(400, 300);
   leagueBackdrop = createGraphics(240, 120);
   refereeBackdrop = createGraphics(320, 120);
-  drawBackgroup = createGraphics(100, 100);
+  drawBackdrop = createGraphics(100, 100);
 
   //initialize plinkos
   addPlayers();

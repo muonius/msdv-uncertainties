@@ -72,7 +72,7 @@ function addPlayers() {
   );
   plinkos.push(playerAge);
 
-  playerName = new Plinko(
+  playerSelf = new Plinko(
     20,
     -height / 2 + 280,
     pRadius,
@@ -82,7 +82,7 @@ function addPlayers() {
     true,
     "Player Self"
   );
-  plinkos.push(playerName);
+  plinkos.push(playerSelf);
 
   playerVictory = new Plinko(
     120,
@@ -107,10 +107,10 @@ function addLeagues() {
     pAngleStart,
     colorPlinko.leagues,
     true,
-    "League Country"
+    "League's Country"
   );
   leagues.push(leagueCountry);
-  leagueName = new Plinko(
+  leagueSelf = new Plinko(
     90,
     -height / 2 + 420,
     pRadius,
@@ -120,7 +120,7 @@ function addLeagues() {
     true,
     "League Self"
   );
-  leagues.push(leagueName);
+  leagues.push(leagueSelf);
 }
 
 function addReferees() {
@@ -136,7 +136,7 @@ function addReferees() {
     "Referee's Card Given"
   );
   referees.push(refCard);
-  refName = new Plinko(
+  refCSelf = new Plinko(
     20,
     -height / 2 + 550,
     pRadius,
@@ -146,7 +146,7 @@ function addReferees() {
     true,
     "Referee Self"
   );
-  referees.push(refName);
+  referees.push(refSelf);
   refCountry = new Plinko(
     120,
     -height / 2 + 550,
@@ -155,7 +155,7 @@ function addReferees() {
     pAngleStart,
     colorPlinko.referees,
     true,
-    "Referee's Country"
+    "Referee's Country'"
   );
   referees.push(refCountry);
 }
@@ -223,7 +223,7 @@ function removeFloat() {
 
 function addDraw() {
   //draw league
-  numdraw = new Plinko(
+  numdraw = new addNumDraws(
     40,
     -height / 2 + 570,
     80,
@@ -263,12 +263,13 @@ function addNumDraws(x, y, w, h, a, c, display, label) {
     noStroke();
     if (display === true) fill(c);
     if (display === false) noFill();
-    drawBackground.background(0);
-    drawBackground.fill(255);
-    drawBackground.text(`Draws`, 100, 50);
-    drawBackground.textSize(30);
-    drawBackground.textAlign(CENTER);
-    texture(drawBackground);
+    drawBackdrop.background(c);
+    drawBackdrop.text(`Num of`, 50, 35);
+    drawBackdrop.text(`Draws`, 50, 55);
+    drawBackdrop.fill(255);
+    drawBackdrop.textSize(20);
+    drawBackdrop.textAlign(CENTER);
+    texture(drawBackdrop);
     box(this.w, this.h);
     // rect(0, 0, this.w, this.h);
     pop();
