@@ -1,4 +1,4 @@
-function Legend(x, y, r, color) {
+function Legend(x, y, r, color, label) {
   this.hue = color;
   const options = {
     isStatic: true,
@@ -6,7 +6,7 @@ function Legend(x, y, r, color) {
   x += random(-1, 1);
   this.body = Bodies.circle(x, y, r, options);
   this.r = r;
-  this.body.label = "legend";
+  this.body.label = label;
   World.add(world, this.body);
 }
 

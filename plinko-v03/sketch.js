@@ -42,6 +42,7 @@ let angles = [-0.2, 0.9, 1.5, 2.1, -0.9, -1.7, -2.4];
 
 //*********Draw team particles
 let teams = [];
+let legend;
 let legends = [];
 let legendLinear;
 let legendPoisson;
@@ -126,6 +127,7 @@ function setup() {
   leagueBackdrop = createGraphics(240, 120);
   refereeBackdrop = createGraphics(320, 120);
   drawBackdrop = createGraphics(100, 100);
+  legend = createGraphics(400, 400);
 
   //initialize plinkos
   addPlayers();
@@ -214,6 +216,7 @@ function draw() {
   //*****************display legend
   for (let i = 0; i < legends.length; i++) {
     legends[i].show();
+    // console.log(legends[i]);
   }
   //*****************initial display all plinkos
   if (!selectVal) {
@@ -249,4 +252,22 @@ function draw() {
     plane(300, 300);
     pop();
   }
+
+  //Draw interactive tooltip
+
+  push();
+  translate(530, 226, -150);
+  // plinkoTooltip.noStroke();
+  // ambientMaterial(255, 0, 255);
+  legend.background(255);
+  legend.text("Linear", 0, 100);
+  legend.text("Logistic", 0, 150);
+  legend.text("Poisson", 0, 200);
+  legend.text("Miscellaneous", 0, 250);
+  legend.textSize(20);
+  legend.textAlign(LEFT);
+  texture(legend);
+  noStroke();
+  plane(400, 400);
+  pop();
 }

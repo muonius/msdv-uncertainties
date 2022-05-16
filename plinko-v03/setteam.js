@@ -318,14 +318,14 @@ function onlyDraws() {
 }
 
 function drawLegend() {
-  legendLinear = new Legend(250, 100, 10, colorParticle.linear);
+  legendLinear = new Legend(250, 100, 10, colorParticle.linear, "Linear");
   legends.push(legendLinear);
 
-  legendLogistic = new Legend(250, 140, 10, colorParticle.logistic);
+  legendLogistic = new Legend(250, 140, 10, colorParticle.logistic, "Logistic");
   legends.push(legendLogistic);
 
-  legendPoisson = new Legend(250, 180, 10, colorParticle.poisson);
+  legendPoisson = new Legend(250, 180, 10, colorParticle.poisson, "Poisson");
   legends.push(legendPoisson);
-  legendMisc = new Legend(250, 220, 10, colorParticle.misc);
+  legendMisc = new Legend(250, 220, 10, colorParticle.misc, "Misc");
   legends.push(legendMisc);
 }
