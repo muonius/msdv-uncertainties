@@ -4,7 +4,7 @@ function Legend(x, y, r, color, label) {
     isStatic: true,
   };
   x += random(-1, 1);
-  this.body = Bodies.circle(x, y, r, options);
+  this.body = Bodies.circle(x, y, 1, options);
   this.r = r;
   this.body.label = label;
   World.add(world, this.body);
