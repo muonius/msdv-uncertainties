@@ -30,7 +30,7 @@ let refereeBackdrop;
 
 //*********Axis
 let oddRatio;
-let oddratios = [0, 0.5, 1, 1.5, 2, 2.5, 3];
+let oddratios = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5];
 
 //*********Draw world in World
 let world;
@@ -177,26 +177,7 @@ function draw() {
   drawLeagueBackdrop();
   drawRefereeBackdrop();
 
-  //*****************static odd ratio plane*/
-  oddRatio.background("black");
-  for (let i = 0; i < oddratios.length; i++) {
-    let x = map(i, 0, oddratios.length - 1, -20, height / 2 + 60);
-    oddRatio.text(oddratios[i], x, 270);
-  }
-  oddRatio.fill(255);
-  oddRatio.textSize(20);
-  oddRatio.textAlign(CENTER);
-
-  //display odd ratio plane
-  push();
-  noStroke();
-
-  translate(0, height / 2 - 50);
-  rotateX(PI / 2);
-  // ambientMaterial(255, 0, 0);
-  texture(oddRatio);
-  plane(800, 800);
-  pop();
+  drawAxis();
 
   //*****************display bounds
   for (let i = 0; i < boundaries.length; i++) {

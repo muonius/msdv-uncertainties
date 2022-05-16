@@ -83,3 +83,26 @@ function removeRefereeBackdrop() {
   plane(320, 120);
   pop();
 }
+
+function drawAxis() {
+  //*****************static odd ratio plane*/
+  oddRatio.background("black");
+  oddRatio.textAlign(CENTER);
+  oddRatio.fill(255);
+  oddRatio.textSize(16);
+  for (let i = 0; i < oddratios.length; i++) {
+    let x = map(i, 0, oddratios.length - 1, -20, 450);
+    oddRatio.text(oddratios[i], x, 270);
+  }
+  oddRatio.textSize(16);
+  oddRatio.text("Odd Ratios", 80, 300);
+  //display odd ratio plane
+  push();
+  noStroke();
+  translate(0, height / 2 - 50, -15);
+  rotateX(PI / 1.98);
+  // ambientMaterial(255, 0, 0);
+  texture(oddRatio);
+  plane(800, 800);
+  pop();
+}
