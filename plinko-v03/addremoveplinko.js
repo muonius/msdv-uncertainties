@@ -264,8 +264,9 @@ function addNumDraws(x, y, w, h, a, c, display, label) {
     if (display === true) fill(c);
     if (display === false) noFill();
     drawBackdrop.background(c);
-    drawBackdrop.text(`Num of`, 50, 45);
-    drawBackdrop.text(`Draws`, 50, 70);
+    drawBackdrop.textFont("Goldman");
+    drawBackdrop.text(`NUM OF`, 50, 45);
+    drawBackdrop.text(`DRAWS`, 50, 70);
     drawBackdrop.fill(255);
     drawBackdrop.textSize(20);
     drawBackdrop.textAlign(CENTER);

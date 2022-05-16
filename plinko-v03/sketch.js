@@ -30,7 +30,7 @@ let refereeBackdrop;
 
 //*********Axis
 let oddRatio;
-let oddratios = [-0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5];
+let oddratios = [0.5, 1, 1.5, 2, 2.5, 3];
 
 //*********Draw world in World
 let world;
@@ -118,7 +118,7 @@ function setup() {
   //create text
   plinkoTooltip = createGraphics(800, 800);
   oddRatio = createGraphics(500, 500);
-  playerBackdrop = createGraphics(400, 300);
+  playerBackdrop = createGraphics(450, 300);
   leagueBackdrop = createGraphics(240, 120);
   refereeBackdrop = createGraphics(320, 120);
   drawBackdrop = createGraphics(100, 100);

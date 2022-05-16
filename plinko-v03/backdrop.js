@@ -6,12 +6,13 @@ function drawPlayerBackdrop() {
   translate(20, -220, -100);
   //   rotateZ(0.1);
   playerBackdrop.background("#620119");
-  playerBackdrop.text("Player", 20, 50);
+  playerBackdrop.text("PLAYER", 20, 40);
   playerBackdrop.fill("White");
-  playerBackdrop.textSize(30);
+  playerBackdrop.textFont("Goldman");
+  playerBackdrop.textSize(22);
   playerBackdrop.textAlign(LEFT);
   texture(playerBackdrop);
-  plane(400, 300);
+  plane(450, 300);
   pop();
 }
 
@@ -22,9 +23,10 @@ function drawLeagueBackdrop() {
   translate(20, 10, -50);
   // rotateX(HALF_PI);
   leagueBackdrop.background("#C8D5E5");
-  leagueBackdrop.text("League", 20, 30);
+  leagueBackdrop.text("LEAUGE", 20, 30);
   leagueBackdrop.fill("Black");
   leagueBackdrop.textSize(20);
+  leagueBackdrop.textFont("Goldman");
   leagueBackdrop.textAlign(LEFT);
   texture(leagueBackdrop);
   plane(240, 120);
@@ -40,7 +42,8 @@ function drawRefereeBackdrop() {
   translate(20, 150, -75);
   //   rotateZ(-0.1);
   refereeBackdrop.background("#FFE5B5");
-  refereeBackdrop.text("Referee", 20, 30);
+  refereeBackdrop.textFont("Goldman");
+  refereeBackdrop.text("REFEREE", 20, 30);
   refereeBackdrop.fill("Black");
   refereeBackdrop.textSize(20);
   refereeBackdrop.textAlign(LEFT);
@@ -57,7 +60,7 @@ function removePlayerBackdrop() {
   noStroke();
   translate(20, -220, -100);
   //   rotateZ(0.1);
-  plane(400, 300);
+  plane(450, 300);
   pop();
 }
 
@@ -88,18 +91,20 @@ function drawAxis() {
   //*****************static odd ratio plane*/
   oddRatio.background("black");
   oddRatio.textAlign(CENTER);
-  oddRatio.fill(255);
+  oddRatio.textFont("Futura");
+  oddRatio.fill("White");
   oddRatio.textSize(16);
   for (let i = 0; i < oddratios.length; i++) {
-    let x = map(i, 0, oddratios.length - 1, -80, 600);
+    let x = map(i, 0, oddratios.length - 1, 60, 480);
     oddRatio.text(oddratios[i], x, 270);
   }
-  oddRatio.textSize(16);
-  oddRatio.text("Odd Ratios", 80, 300);
+  oddRatio.textSize(14);
+  oddRatio.textFont("Goldman");
+  oddRatio.text("ODD RATIOS", 80, 300);
   //display odd ratio plane
   push();
   noStroke();
-  translate(0, height / 2 - 50, -15);
+  translate(0, height / 2 - 50, -10);
   rotateX(PI / 2);
   // ambientMaterial(255, 0, 0);
   texture(oddRatio);
