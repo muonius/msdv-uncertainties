@@ -245,6 +245,7 @@ function draw() {
     // ambientMaterial(255, 0, 255);
     plinkoTooltip.background(255);
     plinkoTooltip.text(`${plinkolabels[i]}`, 100, 50);
+    plinkoTooltip.textFont("Futura");
     plinkoTooltip.textSize(60);
     plinkoTooltip.textAlign(LEFT);
     texture(plinkoTooltip);
@@ -260,6 +261,7 @@ function draw() {
   // plinkoTooltip.noStroke();
   // ambientMaterial(255, 0, 255);
   legend.background(255);
+  legend.textFont("Futura");
   legend.text("Linear", 0, 100);
   legend.text("Logistic", 0, 150);
   legend.text("Poisson", 0, 200);
