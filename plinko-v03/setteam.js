@@ -316,3 +316,16 @@ function onlyDraws() {
   );
   teams.push(teamD);
 }
+
+function drawLegend() {
+  legendLinear = new Legend(250, 100, 10, colorParticle.linear);
+  legends.push(legendLinear);
+
+  legendLogistic = new Legend(250, 140, 10, colorParticle.logistic);
+  legends.push(legendLogistic);
+
+  legendPoisson = new Legend(250, 180, 10, colorParticle.poisson);
+  legends.push(legendPoisson);
+  legendMisc = new Legend(250, 220, 10, colorParticle.misc);
+  legends.push(legendMisc);
+}

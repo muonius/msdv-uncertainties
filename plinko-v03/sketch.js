@@ -42,7 +42,11 @@ let angles = [-0.2, 0.9, 1.5, 2.1, -0.9, -1.7, -2.4];
 
 //*********Draw team particles
 let teams = [];
-
+let legends = [];
+let legendLinear;
+let legendPoisson;
+let legendLogistic;
+let legendMisc;
 //*********Draw Plinkos */
 //Player plinkos
 let playerPosition;
@@ -128,6 +132,9 @@ function setup() {
   addLeagues();
   addReferees();
 
+  //create legend
+  drawLegend();
+
   //create divider
   for (let i = -cols / 2; i < cols + 1; i++) {
     const spacing = width / cols;
@@ -204,6 +211,10 @@ function draw() {
     }
   }
 
+  //*****************display legend
+  for (let i = 0; i < legends.length; i++) {
+    legends[i].show();
+  }
   //*****************initial display all plinkos
   if (!selectVal) {
     for (let i = 0; i < plinkos.length; i++) {
