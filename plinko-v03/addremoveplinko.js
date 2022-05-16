@@ -270,7 +270,7 @@ function addNumDraws(x, y, w, h, a, c, display, label) {
     drawBackdrop.textSize(20);
     drawBackdrop.textAlign(CENTER);
     texture(drawBackdrop);
-    box(this.w, this.h);
+    box(this.w, this.h, 50);
     // rect(0, 0, this.w, this.h);
     pop();
   };

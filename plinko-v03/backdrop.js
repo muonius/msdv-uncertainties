@@ -91,7 +91,7 @@ function drawAxis() {
   oddRatio.fill(255);
   oddRatio.textSize(16);
   for (let i = 0; i < oddratios.length; i++) {
-    let x = map(i, 0, oddratios.length - 1, -20, 450);
+    let x = map(i, 0, oddratios.length - 1, -80, 600);
     oddRatio.text(oddratios[i], x, 270);
   }
   oddRatio.textSize(16);
@@ -100,7 +100,7 @@ function drawAxis() {
   push();
   noStroke();
   translate(0, height / 2 - 50, -15);
-  rotateX(PI / 1.98);
+  rotateX(PI / 2);
   // ambientMaterial(255, 0, 0);
   texture(oddRatio);
   plane(800, 800);

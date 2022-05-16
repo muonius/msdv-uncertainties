@@ -30,7 +30,7 @@ let refereeBackdrop;
 
 //*********Axis
 let oddRatio;
-let oddratios = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5];
+let oddratios = [-0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5];
 
 //*********Draw world in World
 let world;

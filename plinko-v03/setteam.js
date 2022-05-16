@@ -228,12 +228,12 @@ function onlyPlayers() {
   teams.push(teamG);
   let teamH = new Particle(
     -30,
-    -height / 2 + 50,
+    -height / 2 + 100,
     10,
     0.1,
-    1,
+    0.7,
     colorParticle.poisson,
-    0
+    0.3
   );
   teams.push(teamH);
   let teamI = new Particle(
@@ -243,7 +243,7 @@ function onlyPlayers() {
     0.1,
     0.9,
     colorParticle.poisson,
-    0.01
+    0.5
   );
   teams.push(teamI);
   let teamJ = new Particle(
@@ -253,7 +253,7 @@ function onlyPlayers() {
     0.1,
     0.5,
     colorParticle.misc,
-    0.01
+    0.5
   );
   teams.push(teamJ);
 }
