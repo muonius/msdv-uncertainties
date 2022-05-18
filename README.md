@@ -4,16 +4,16 @@ This is the summary of prototypes I developed during the class Visualizing Uncer
 
 1. Use reflective sphere mirror to illustrate perspectives
    <br>[Project Folder](https://github.com/muonius/msdv-uncertainties/tree/master/prototype-reflection)
-   <img src="./assets/Mirror_Reflection.gif" width="500" alt="Mirror">
+   <br><img src="./assets/Mirror_Reflection.gif" width="500" alt="Mirror">
 2. Use noise wave to represent different analytical outcomes in research
    <br>[Project Folder](https://github.com/muonius/msdv-uncertainties/tree/master/prototype-noise)
-   <img src="./assets/Noise_Wave.png" width="500" alt="Noise Wave">
+   <br><img src="./assets/Noise_Wave.png" width="500" alt="Noise Wave">
 3. Use Plinko 2D simulation to represent different analytical outcomes in research
    <br> [Project Folder](https://github.com/muonius/msdv-uncertainties/tree/master/plinko-2D)
-   <img src="./assets/Plinko_2D.png" width="500" alt="Plinko_2D">
+   <br><img src="./assets/Plinko_2D.png" width="500" alt="Plinko_2D">
 4. Further refinement of Prototype 3 to create a 3D Plinko Simulation
    <br>[Project Folder](https://github.com/muonius/msdv-uncertainties/tree/master/plinko-v03)
-   <img src="./assets/Plinko_3D.png" width="500" alt="Plinko_3D">
+   <br> <img src="./assets/Plinko_3D.png" width="500" alt="Plinko_3D">
 
 ## 1. Uncertainty Type and Data Selection
 
