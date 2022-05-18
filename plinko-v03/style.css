@@ -1,6 +1,79 @@
-input {
-    font-size: 20px;
-    font-family: "Arial";
-    display:block;
+html {
+  font-size: 16px;
+  /* font-family: "Inter",sans-serif; */
+  /* max-width: 1920px;
+    min-width: 1366px; */
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 100%;
+  display: block;
+  background: #dddddd;
+  /* -webkit-mask-image: url("texture.png"); */
+  /* mask-image: url("texture.png");
+  mask-mode: alpha; */
+  /* -webkit-mask-image: -webkit-gradient(
+    linear,
+    left 90%,
+    left bottom,
+    from(rgba(0, 0, 0, 1)),
+    to(rgba(0, 0, 0, 0))
+  ); */
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+div {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+}
+
+input {
+  line-height: 2rem;
+  vertical-align: center;
+}
+
+label.radio {
+  line-height: 1.2rem;
+  vertical-align: center;
+}
+
+main {
+  margin: 0 auto;
+  display: inline-block;
+}
+
+h3 {
+  text-align: right;
+}
+
+header {
+  height: 30%;
+  padding-top: 5vh;
+  /* padding-bottom: 2vh; */
+  border-bottom: 1px #fff solid;
+}
+
+h1 {
+  font-family: "Syncopate";
+  color: #800020;
+  font-weight: 700;
+
+  /* font-family: "Goldman"; */
+  font-size: 3rem;
+  /* background: #fff; */
+  margin: 0 auto;
+  text-align: center;
+}
+
+h3 {
+  font-family: "DM Sans";
+  font-weight: 400;
+  font-size: 1.4rem;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1rem;
+}

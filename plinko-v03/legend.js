@@ -17,7 +17,7 @@ Legend.prototype.show = function () {
   // ambientMaterial(255);
   //translate is cumulative
   push();
-  translate(pos.x, pos.y);
+  translate(pos.x, pos.y, -150);
   noStroke();
   fill(this.hue);
   sphere(this.r);

@@ -8,7 +8,8 @@ function drawPlayerBackdrop() {
   playerBackdrop.background("#620119");
   playerBackdrop.text("PLAYER", 20, 40);
   playerBackdrop.fill("White");
-  playerBackdrop.textFont("Goldman");
+  playerBackdrop.textFont("Syncopate");
+  playerBackdrop.textStyle(BOLD);
   playerBackdrop.textSize(22);
   playerBackdrop.textAlign(LEFT);
   texture(playerBackdrop);
@@ -23,10 +24,11 @@ function drawLeagueBackdrop() {
   translate(20, 10, -50);
   // rotateX(HALF_PI);
   leagueBackdrop.background("#C8D5E5");
-  leagueBackdrop.text("LEAUGE", 20, 30);
+  leagueBackdrop.text("LEAGUE", 20, 30);
   leagueBackdrop.fill("Black");
   leagueBackdrop.textSize(20);
-  leagueBackdrop.textFont("Goldman");
+  leagueBackdrop.textFont("Syncopate");
+  leagueBackdrop.textStyle(BOLD);
   leagueBackdrop.textAlign(LEFT);
   texture(leagueBackdrop);
   plane(240, 120);
@@ -42,10 +44,11 @@ function drawRefereeBackdrop() {
   translate(20, 150, -75);
   //   rotateZ(-0.1);
   refereeBackdrop.background("#FFE5B5");
-  refereeBackdrop.textFont("Goldman");
+  refereeBackdrop.textFont("Syncopate");
   refereeBackdrop.text("REFEREE", 20, 30);
   refereeBackdrop.fill("Black");
   refereeBackdrop.textSize(20);
+  refereeBackdrop.textStyle(BOLD);
   refereeBackdrop.textAlign(LEFT);
   texture(refereeBackdrop);
   plane(320, 120);
@@ -99,8 +102,9 @@ function drawAxis() {
     oddRatio.text(oddratios[i], x, 270);
   }
   oddRatio.textSize(14);
-  oddRatio.textFont("Goldman");
-  oddRatio.text("ODD RATIOS", 80, 300);
+  oddRatio.textFont("Syncopate");
+  oddRatio.textStyle(BOLD);
+  oddRatio.text("ODD RATIO", 80, 300);
   //display odd ratio plane
   push();
   noStroke();

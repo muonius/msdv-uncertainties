@@ -32,7 +32,7 @@ function noCovariates() {
     10,
     0.1,
     0.9,
-    colorParticle.poisson,
+    colorParticle.misc,
     0.05
   );
   teams.push(teamF);
@@ -260,7 +260,7 @@ function onlyPlayers() {
 
 function threeCovariates() {
   let teamH = new Particle(
-    0,
+    -10,
     -height / 2 + 100,
     10,
     0.5,
@@ -270,23 +270,23 @@ function threeCovariates() {
   );
   teams.push(teamH);
   let teamI = new Particle(
-    40,
-    -height / 2 + 50,
-    10,
-    0.5,
-    2,
-    colorParticle.linear,
-    0.01
-  );
-  teams.push(teamI);
-  let teamJ = new Particle(
-    20,
+    5,
     -height / 2 + 150,
     10,
     0.5,
-    2,
+    1,
     colorParticle.linear,
     0.1
+  );
+  teams.push(teamI);
+  let teamJ = new Particle(
+    -10,
+    -height / 2 + 150,
+    10,
+    0.5,
+    0.1,
+    colorParticle.linear,
+    0.5
   );
   teams.push(teamJ);
 }

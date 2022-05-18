@@ -111,7 +111,7 @@ function addLeagues() {
   );
   leagues.push(leagueCountry);
   leagueSelf = new Plinko(
-    90,
+    70,
     -height / 2 + 420,
     pRadius,
     pRadius,
