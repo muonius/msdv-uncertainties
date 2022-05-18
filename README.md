@@ -27,7 +27,7 @@ The project is based on a crowd-sourced research experiment conducted by Silberz
 
 #### Illustration of experiment process
 
-   <img src="./assets/Flow_Chart.png" width="400" alt="Flow Chart">
+   <img src="./assets/Flow_Chart.png" width="500" alt="Flow Chart">
 
 ### 2. Visualization: 3D Plinko Machine Simulation
 
