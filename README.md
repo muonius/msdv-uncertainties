@@ -15,21 +15,21 @@ This is the summary of prototypes I developed during the class Visualizing Uncer
    <br>[Project Folder](https://github.com/muonius/msdv-uncertainties/tree/master/plinko-v03)
    <br> <img src="./assets/Plinko_3D.png" width="400" alt="Plinko_3D">
 
-## 1. Uncertainty Type and Data Selection
+### 1. Uncertainty Type and Data Selection
 
 The psychological science community is undergoing a replication crisis where according to an experiment performed by Open Science Collaboration (OSC) in 2015, only 47 out of 100 published studies could be successfully replicated. While OSC’s replication methodology is debated, it is acknowledged that uncertainty is inevitable in analytical research, and can result from varying analytical methods of similar professional reliability and validity. Therefore, researchers are recommended to keep an open mind to the limitations of classical statistics and embrace crowd-sourcing and collaborations that could contribute to balancing discussions and validating findings.
 
-### Uncertainty Project
+#### Uncertainty Project
 
-The project is based on a crowd-sourced research experiment conducted by Silberzahn & Uhlmann in 2015, during which 29 teams of data experts were tasked to analyze the same set of data about soccer players and attempt to answer the same question using an odd ratio metric – are darker skin-toned players more likely to receive red cards from referees?
+The project is based on a crowd-sourced research experiment conducted by Silberzahn & Uhlmann in 2015, during which 29 teams of data experts were tasked to analyze the same set of data about occer players and attempt to answer the same question using an odd ratio metric – are darker skin-toned players more likely to receive red cards from referees?
 
 29 teams produced 20 odd ratios ranging from 0.89 (more unlikely) to 1 (unlikely) and to 2.9 (more likely).
 
-### Illustration of experiment process
+#### Illustration of experiment process
 
    <img src="./assets/Flow_Chart.png" width="400" alt="Flow Chart">
 
-## Visualization: 3D Plinko Machine Simulation
+### 2. Visualization: 3D Plinko Machine Simulation
 
 **Concept:** Use animation and 3D to draw analogies between abstract concepts and naturally occurring phenomena and test comprehension of the following ideas.
 
