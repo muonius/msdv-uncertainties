@@ -6,7 +6,7 @@ Data,Poisson,6
 Linear,Players | Leagues | Referees,3
 Linear,Players | Referees,1
 Linear,Players | Leagues,1
-Linear,Players | Draws,1
+Linear,Num of Draws,1
 Logistic,Players | Referees,4
 Logistic,Players | Leagues,3
 Logistic,Leagues,1
@@ -41,7 +41,7 @@ Players | Referees,1.21,1
 Players | Leagues | Referees,1.18,1
 Players | Leagues,1.12,1
 Players,1.1,1
-Players | Draws,1.03,1
+Num of Draws,1.03,1
 Leagues,1.02,1
 Players | Referees,0.96,1
 Players,0.89,1

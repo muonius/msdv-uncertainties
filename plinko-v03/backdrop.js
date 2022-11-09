@@ -104,7 +104,7 @@ function drawAxis() {
   oddRatio.textSize(14);
   oddRatio.textFont("Syncopate");
   oddRatio.textStyle(BOLD);
-  oddRatio.text("ODD RATIO", 80, 300);
+  oddRatio.text("ODDS RATIO", 80, 300);
   //display odd ratio plane
   push();
   noStroke();
